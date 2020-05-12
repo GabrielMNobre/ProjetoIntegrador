@@ -1,7 +1,6 @@
-<strong>TADS - Grupo 10 - Turma A</strong>
-<br><strong>Projeto Integrador</strong>
-<br><strong>Nome do Projeto:</strong> MatHacker
-<br><strong>Integrantes:</strong> <br>Anthony Richard
+<h1>Projeto Integrador - 1° Períiodo TADS - Turma A - Grupo 10</h1>
+<br><h4>Nome do Projeto:</h4> MatHacker
+<br><h4>Integrantes:</h4> <br>Anthony Richard
              <br>Gabriel Nobre
              <br>Ingrid Drudi
              <br>Matheus Laguna
