@@ -62,10 +62,47 @@ public class jogoCompleto {
 		return resultado;
 	}
 	
+
+	static String confereInformacoes(String informacoes[]) {
+		//função que observa se todos as informações inseridas pelo funcionário foram colocadas dentro do array
+		String resultado = "";
+		if ((informacoes[0] != "") && (informacoes[1] != "") && (informacoes[2] != "")) {
+			resultado = "ok";
+		} else {
+			resultado = "error";
+		}
+		return resultado;
+	}
+	
+	static void carregarInicio(String status) {
+		Thread timer = new Thread();
+		switch(status) {
+			case "ok":
+				System.out.println("\nVocê está pronto? O jogo vai começar");
+				System.out.println("Mostre suas habilidades");
+				System.out.println("Tente vencer os desafios");
+				try {
+					timer.sleep(6000);
+					System.out.println("\n\n ██████           ██  ██████   ██████   ██████       ██████  ██████  ███    ███ ███████  ██████  █████       █████   ██████   ██████  ██████   █████  \n" + 
+										   "██    ██          ██ ██    ██ ██       ██    ██     ██      ██    ██ ████  ████ ██      ██      ██   ██     ██   ██ ██       ██    ██ ██   ██ ██   ██ \n" + 
+										   "██    ██          ██ ██    ██ ██   ███ ██    ██     ██      ██    ██ ██ ████ ██ █████   ██      ███████     ███████ ██   ███ ██    ██ ██████  ███████ \n" + 
+										   "██    ██     ██   ██ ██    ██ ██    ██ ██    ██     ██      ██    ██ ██  ██  ██ ██      ██      ██   ██     ██   ██ ██    ██ ██    ██ ██   ██ ██   ██ \n" + 
+										   " ██████       █████   ██████   ██████   ██████       ██████  ██████  ██      ██ ███████  ██████ ██   ██     ██   ██  ██████   ██████  ██   ██ ██   ██");
+				} catch (InterruptedException e) {
+					System.out.println("Mexeu");
+				}
+				
+				break;
+			case "error":
+				break;
+		}
+	}
+	
 	public static void main(String[] args) {
 		int idadePersonagem = 0;
 		char sexoPersonagem;
-		String nomePersonagem = "";
+		String nomePersonagem = "",
+			   condicaoInicioJogo = "";
 		String informacoesPersonagem[] = new String[3];
 		
 		participacaoJogo();
@@ -75,6 +112,7 @@ public class jogoCompleto {
 		nomePersonagem = informacoesPersonagem[1];
 		idadePersonagem = Integer.parseInt(informacoesPersonagem[2]);
 		
-		System.out.println("\nSexo => "+sexoPersonagem+"\nNome => "+nomePersonagem+"\nIdade => "+idadePersonagem);
+		condicaoInicioJogo = confereInformacoes(informacoesPersonagem);
+		carregarInicio(condicaoInicioJogo);
 	}
 }
