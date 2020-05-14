@@ -74,6 +74,39 @@ public class jogoCompleto {
 		return resultado;
 	}
 	
+	static String selecionaBoneco(char sexo) {
+		String boneco = "";
+		switch (sexo) {
+			case 'M': 
+				boneco = "      ////^\\\\\\\\\n" + 
+						"      | ^   ^ |\n" + 
+						"     @ (o) (o) @\n" + 
+						"      |   <   |\n" + 
+						"      |  ___  |\n" + 
+						"       \\_____/\n" + 
+						"     ____|  |____\n" + 
+						"    /    \\__/    \\\n" + 
+						"   /              \\\n" + 
+						"  /\\_/|        |\\_/\\\n" + 
+						" / /  |________|  \\ \\\n";
+				break;
+			case 'F':
+				boneco = " /////////////\\\\\\\\\n" + 
+						"(((((((((((((( \\\\\\\\\n" + 
+						"))) ~~      ~~  (((\n" + 
+						"((( (*)     (*) )))\n" + 
+						")))     <       (((\n" + 
+						"((( '\\______/`  )))\n" + 
+						")))\\___________/(((\n" + 
+						"       _) (_\n" + 
+						"      / \\_/ \\\n" + 
+						"     /(     )\\\n" + 
+						"    // )___( \\\\\n";
+				break;
+		}
+		return boneco;
+	}
+	
 	static void carregarInicio(String status) {
 		Thread timer = new Thread();
 		switch(status) {
@@ -102,7 +135,8 @@ public class jogoCompleto {
 		int idadePersonagem = 0;
 		char sexoPersonagem;
 		String nomePersonagem = "",
-			   condicaoInicioJogo = "";
+			   condicaoInicioJogo = "",
+			   visualPersonagem = "";
 		String informacoesPersonagem[] = new String[3];
 		
 		participacaoJogo();
@@ -113,6 +147,8 @@ public class jogoCompleto {
 		idadePersonagem = Integer.parseInt(informacoesPersonagem[2]);
 		
 		condicaoInicioJogo = confereInformacoes(informacoesPersonagem);
+		visualPersonagem = selecionaBoneco(sexoPersonagem);
+		System.out.println("\n"+nomePersonagem +" seu personagem para participar do jogo será: \n\n"+visualPersonagem);
 		carregarInicio(condicaoInicioJogo);
 	}
 }
