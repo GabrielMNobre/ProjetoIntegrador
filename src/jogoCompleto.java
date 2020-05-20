@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 import java.util.Scanner;
 
 public class jogoCompleto {
@@ -7,6 +8,7 @@ public class jogoCompleto {
 	static Scanner sc = new Scanner(System.in);
 	
 	static void participacaoJogo() {
+		//exibe o título e ao clicar enter o jogo inicia
 		String confirmacao;
 		int x = 0;
 		
@@ -33,6 +35,7 @@ public class jogoCompleto {
 	}
 	
 	static String[] definiPersonagem() {
+		//usuário insere as informações do funcionário e armazena em um array
 		String nomePersonagem = "";
 		int idade = 0,
 			x = 0;
@@ -77,6 +80,7 @@ public class jogoCompleto {
 	}
 	
 	static String selecionaBoneco(char sexo) {
+		//defini a partir da entrada do sexo no array de informações qual será o personagem do usuário
 		String boneco = "";
 		switch (sexo) {
 			case 'M': 
@@ -110,18 +114,21 @@ public class jogoCompleto {
 	}
 	
 	static void carregarInicio(String status) {
+		//método que marca o início da primeira fase
 		switch(status) {
 			case "ok":
 				System.out.println("\nVocê está pronto? O jogo vai começar");
 				System.out.println("Mostre suas habilidades");
 				System.out.println("Tente vencer os desafios");
 				try {
+					//programa aguarda 60 segundos para exibir que começo o jogo
 					Thread.sleep(6000);
 					System.out.println("\n\n ██████           ██  ██████   ██████   ██████       ██████  ██████  ███    ███ ███████  ██████  █████       █████   ██████   ██████  ██████   █████  \n" + 
 										   "██    ██          ██ ██    ██ ██       ██    ██     ██      ██    ██ ████  ████ ██      ██      ██   ██     ██   ██ ██       ██    ██ ██   ██ ██   ██ \n" + 
 										   "██    ██          ██ ██    ██ ██   ███ ██    ██     ██      ██    ██ ██ ████ ██ █████   ██      ███████     ███████ ██   ███ ██    ██ ██████  ███████ \n" + 
 										   "██    ██     ██   ██ ██    ██ ██    ██ ██    ██     ██      ██    ██ ██  ██  ██ ██      ██      ██   ██     ██   ██ ██    ██ ██    ██ ██   ██ ██   ██ \n" + 
 										   " ██████       █████   ██████   ██████   ██████       ██████  ██████  ██      ██ ███████  ██████ ██   ██     ██   ██  ██████   ██████  ██   ██ ██   ██");
+					//marca o inicio da primeira faase
 					System.out.println("\n\t\t\t\t\t\t\t\tFASE I");
 				} catch (InterruptedException e) {
 					System.out.println("Mexeu");
@@ -134,8 +141,10 @@ public class jogoCompleto {
 	}
 	
 	static void historiaInicial(String nome, int idade, char sexo) {
+		//metodo que traz a contextualização e a história inicial do jogo 
 		String genero = "",
 			   artigo = "";
+		//define o a partir do sexo do personagem o artigo da frase
 		if (sexo == 'M') {
 			genero = "é um homem de "+idade+" anos";
 			artigo = "O";
@@ -143,6 +152,7 @@ public class jogoCompleto {
 			genero = "é uma mulher "+idade+" anos";
 			artigo = "A";
 		}
+		//escreve história utilizando o nome e o artigo
 		String pt1[] = 
 			{
 					"\n\nNossa", "história", "se", "passa", "em", "São Paulo.", "O século XXI", "está em seu", "ápice,",
@@ -160,7 +170,7 @@ public class jogoCompleto {
 				"da melhor maneira.", "Os testes começaram a ser realizados", "e", nome, "se mostrou muito talentoso.", "Porém, passados os desafios iniciais,",
 				"as coisas se tornaram mais difíceis", "e", nome, "começou a ter mais dificuldades."
 			};
-		
+		//exibi cada frase ou palavra do array um após o outro com delay de 5 segundos
 		for (int i = 0; i <= pt1.length-1; i++) {
 			if(pt1[i].contains(".") || pt1[i].contains(":")) {
 				System.out.print(pt1[i]+"\n");
@@ -194,22 +204,23 @@ public class jogoCompleto {
 			cont = 1;
 		String artigo = "",
 			   status = "";
+		//define o a partir do sexo do personagem o artigo da frase
 		if(sexo == 'M') {
 			artigo = "ele";
 		} else {
 			artigo = "ela";
 		}
-		
+		//contextualização e história do primeiro desafio, utilizando o nome e o artigo
 		String desafio[] = 
 			{
 				"\nEm um certo dia", nome, "com o objetivo de", "testar seus conhecimentos", "decide abrir", "a porta do quarto da irmã.",
 				"O quarto tinha", "uma fechadura eletrônica", "com senha de três dígitos.", "Por sempre observar", "a irmã digitar a senha de desbloqueio",
 				artigo,"já sabia", "que os dois primeiros dígitos eram,", "respectivamente,", "2 e 3.", "Resta agora para descobrir,", "apenas o terceiro dígito.",
 				"Para descobrir", "ele entrou no sistema", "da fechadura,", "ao abrir o sistema ele se deparou", "com o algoritmo de criação do último digito", 
-				"que era:", "\nTERCEIRO DÍGITO = (((SEGUNDO DÍGITO x 8)+PRIMEIRO DÍGITO) - (PRIMEIRO DÍGITO x 6)) / PRIMEIRO DÍGITO .", "\nPor já saber os primeiros digitos,", nome,
+				"que era:", "\nTERCEIRO DÍGITO = (((SEGUNDO DÍGITO x 8) + PRIMEIRO DÍGITO) - (PRIMEIRO DÍGITO x 6)) / PRIMEIRO DÍGITO .", "\nPor já saber os primeiros digitos,", nome,
 				"organizou a função", "para descobrir com mais facilidade,", "desta forma a função ficou:", "\nTERCEIRO DÍGITO = (((3 x 8) + 2) - (2 x 6)) / 2"
 			};
-		
+		//exibição do array com dela de 5 segundos 
 		for (int i = 0; i <= desafio.length-1; i++) {
 			if(desafio[i].contains(".") || desafio[i].contains(":")) {
 				System.out.print(desafio[i]+"\n");
@@ -222,14 +233,14 @@ public class jogoCompleto {
 				System.out.println(e);
 			}
 		}
-		
+		//mostra o personagem e a senha com a incógnita
 		System.out.println("\n\n"+personagem+"  _____    _____    _____\n"
 				          +" |     |  |     |  |     |\n"
 				          + " |  2  |  |  3  |  |  ?  |\n"
 				          + " |_____|  |_____|  |_____|\n");
 		
 		System.out.println(nome+" tem apenas 2 tentativas");
-		
+		// pede para o usuáŕio entrar com a resposta da incógnita e exibe
 		do {
 			System.out.print("\nQual dígito que está faltando? ");
 			resposta = sc.nextInt();
@@ -255,6 +266,7 @@ public class jogoCompleto {
 				}
 			}
 			cont++;
+			//este laço é exibido no máximo duas vezes, parando a exibição também se o usuário acertar na primeira tentativa
 		} while (resposta != 7 && cont <= 2);
 		
 		return status;
@@ -263,26 +275,28 @@ public class jogoCompleto {
 	
 	static void historiaDesafio2(String nome, char sexo) {
 		String artigo = "";
+		//define o a partir do sexo do personagem o artigo da frase
 		if(sexo == 'M') {
 			artigo = "ele";
 		} else {
 			artigo = "ela";
 		}
-		
+		//historia do segundo desafio
 		System.out.println("\n");
+		//utiliza o nome e o artigo para escrever a história
 		String historia[] = 
 			{
 				nome, "começou a perceber", "que suas contas de luz", "estavam atingindo", "valores exorbitantes,", "muito maiores do que", "a família",
 				"poderia pagar.", "Ele procurou", "em seus arquivos", "e observou uma brecha", "onde poderia agir.", "Havia uma parte do código", "que permitia",
-				"que com algumas mudanças", nome, "determinasse aonde","o relógio medidor de luz","pararia de contar", "os kWh(kiloWhats) gastos.",
+				"que com algumas mudanças", nome, "determinasse aonde","o relógio medidor de luz","pararia de contar", "os kWh(kilowatt) gastos.",
 				"Para determinar", "ele precisa", "estipular o valor máximo a ser pago.",nome,"conversou", "com sua família e", "juntos decidiram que", 
 				"R$250,00 era o máximo que", "conseguiriam pagar.", "Com o valor máximo determinado,", nome, "entrou no sistema do", "relógio medidor",
 				"e descobriu que", "o preço do kWh era de R$0,4.", "Sabendo disso restava descobrir apenas", "aonde aonde o relógio pararia de contar",
 				"para isso", nome, "escreveu a seguinte função:", "\nMÁXIMO KWH x PREÇO KWH = VALOR MÁXIMO .", "\nCruzando com as informações", "que",artigo,
-				"já tinha,", nome, "reescreveu a função da seguinte maneira:", "\nMÁXIMO KWH x 0,4 = 250 .",nome, "tem apenas uma tentativa"
+				"já tinha,", nome, "reescreveu a função da seguinte maneira:", "\nMÁXIMO KWH x 0,4 = 250 .",nome, "tem apenas 2 tentativas."
 				
 			};
-		
+		//exibição com delay de 5 segundos
 		for (int i = 0; i <= historia.length-1; i++) {
 			if(historia[i].contains(".") || historia[i].contains(":")) {
 				System.out.print(historia[i]+"\n");
@@ -299,13 +313,12 @@ public class jogoCompleto {
 	}
 	
 	static String desafio2() {
-		Scanner sc = new Scanner(System.in); 
 		int correta = 0;
 		int cont = 1;
 		String status = "";
 		char resposta = 0;
 		ArrayList<String> alternativas = new ArrayList();
-		
+		//adicionando as alternativas ao arraylist
 		alternativas.add("620");
 		alternativas.add("625");
 		alternativas.add("650");
@@ -314,7 +327,9 @@ public class jogoCompleto {
 		
 		 do {
 			System.out.println("O relógio terá que parar de registrar ao chegar a marca de quantos kWh?");
+			//troca as alternativas de posição
 			Collections.shuffle(alternativas);
+			//exie todas as alternatias do arraylist 
 			for(int i = 0; i <= alternativas.size()-1; i++) {
 				switch (i) {
 					case 0:
@@ -335,7 +350,7 @@ public class jogoCompleto {
 				}
 			}
 				resposta = sc.next().toUpperCase().charAt(0);
-			
+			//observa se a resposta inputada pelo usuário está correta
 				switch(resposta) {
 				case 'A':
 					if (alternativas.get(0).equals("625")) {
@@ -394,18 +409,118 @@ public class jogoCompleto {
 					break;
 			}
 				cont++;
+				//este laço tem sua execução interrompida após a realização das duas tentativas ou respota correta
 		} while (correta != 1 && cont <= 2);
 		 return status;
 	}
 	
+	static void historiaDesafio3(char sexo, String nome) {
+		//historia do desafio 3
+		String artigo = "";
+		//define o a partir do sexo do personagem o artigo da frase
+		if(sexo == 'M') {
+			artigo = "ele";
+		} else {
+			artigo = "ela";
+		}
+		System.out.println("\n");
+		//utiliza o nome e o artigo para escrever a história
+		String historia[] = 
+			{
+				"Após realizar", "estes testes mais simples", nome, "decide realizar um", "teste mais desafiador.", nome, "precisava entrar no", "computador",
+				"do zelador do prédio", "onde morava.", "Para isso", "ele precisa descobrir o", "horário que a sala", "do zelador está vazia", "entrar e", 
+				"hackear a senha", "do computador.", nome, "começou a observar o zelador", "e descobriu que", "todo dia no horário", "das 7 da noite", 
+				"o zelador saía", "para jantar", "e a sala ficava sozinha", "por meia hora.", "Oportunidade perfeita", "para agir sem ser descoberto.",
+				nome, "se preparou e", "às 7 da noite, se dirigiu a sala", "chegando lá", "se deparou com o seguinte algoritmo para determinar a senha:", 
+				"Senha composta por", "4 dígitos,", "o número formado", "pelos quatro dígitos unidos", "constava na classe", "dos números naturais e",
+				"na casa dos milhares.", nome, "não entendeu muito este algoritmo de formação,", "para entender ele", "começou a procurar", "um exemplo e",
+				artigo, "achou.", "O exemplo foi o seguinte :", "\nSe o algoritmo da senha for", "\n1 x 1000", "+ 7 x 100", "+ 0 x 10", "+ 9 x 1", "\nA senha",
+				"será 1709.", nome, "entendeu a explicação e foi tentar acertar", "a senha do zelador", artigo, "pode tentar até acertar."
+				
+			};
+		//exibição com delay de 5 segundos
+		for (int i = 0; i <= historia.length-1; i++) {
+			if(historia[i].contains(".") || historia[i].contains(":")) {
+				System.out.print(historia[i]+"\n");
+			} else {
+				System.out.print(historia[i]+" ");
+			}
+			try {
+				Thread.sleep(500);
+			} catch(InterruptedException e) {
+				System.out.println(e);
+			}
+		}
+	}
+	
+	static String desafio3(String personagem) {
+		String senha = "",
+			   senhaInserida = "",
+			   status = "";
+		int digito1 = 0,
+			digito2 = 0,
+			digito3 = 0,
+			digito4 = 0,
+			correta = 0;
+		Random variavel = new Random();
+		//determina que o valor da senha do zelador terá que ser entre 1000 e 9999
+		senha = String.valueOf(variavel.nextInt((9999 - 1000) + 1) + 1000);
+		do {
+			System.out.println("\nQual é a senha para entrar no computador?");
+			System.out.print("O algoritmo de formação da senha do zelador é: ");
+			//exibe o algoritmo de formação da senha através do tratamento via substring da senha do zelador
+			System.out.println(senha.substring(0, 1) + " x 1000 + " + 
+							   senha.substring(1, 2) + " x 100 + " + 
+							   senha.substring(2, 3) + " x 10 + " + 
+							   senha.substring(3) + " x 1");
+			//exibe todas os dígitos da senha como incógnitas
+			System.out.println("\n"+personagem+"  _____    _____    _____    _____\n"
+			          +" |     |  |     |  |     |  |     |\n"
+			          + " |  ?  |  |  ?  |  |  ?  |  |  ?  |\n"
+			          + " |_____|  |_____|  |_____|  |_____|\n");
+			System.out.print("Entre com o primeiro dígito: ");
+			digito1 = sc.nextInt();
+			System.out.print("Entre com o segundo dígito: ");
+			digito2 = sc.nextInt();
+			System.out.print("Entre com o terceiro dígito: ");
+			digito3 = sc.nextInt();
+			System.out.print("Entre com o quarto dígito: ");
+			digito4 = sc.nextInt();
+			//observa se os valores inutados pelo usuário são válidos 
+			if ((digito1 >= 0 && digito1 < 10) && (digito2 >= 0 && digito2 < 10) && (digito3 >= 0 && digito3 < 10) && (digito4 >= 0 && digito4 < 10)) {
+				//exibe as entradas dousuário no lugar das incógnitas
+				System.out.println("  _____    _____    _____    _____\n"
+				          +" |     |  |     |  |     |  |     |\n"
+				          + " |  "+digito1+"  |  |  "+digito2+"  |  |  "+digito3+"  |  |  "+digito4+"  |\n"
+				          + " |_____|  |_____|  |_____|  |_____|\n");
+				//concatena todas as entradas do usuário e transforma em um única String
+				senhaInserida = String.valueOf(digito1)+String.valueOf(digito2)+String.valueOf(digito3)+String.valueOf(digito4);
+				//compara se a senha original do zelador é igual a senha inserida pelo usuário
+				if (senha.equals(senhaInserida)) {
+					System.out.println("Senha Correta! Computador desbloqueado!");
+					correta = 1;
+					status = "correta";
+				} else {
+					System.out.println("Senha Incorreta! Tente novamente!");
+				}
+			} else {
+				System.out.println("Algum valor inserido é inválido, por ser maior que 9 ou negativo");
+			}
+			//este laço só te sua exibição interrompida quando o usuário acerta a resposta
+		} while(correta != 1);
+		return status;
+	}
+	
 	public static void main(String[] args) {
+		//utilizamos a main como um maestro, apenas chamando as funções
 		int idadePersonagem = 0;
 		char sexoPersonagem;
 		String nomePersonagem = "",
 			   condicaoInicioJogo = "",
 			   visualPersonagem = "",
 			   desafio1 = "",
-			   desafio2 = "";
+			   desafio2 = "",
+			   desafio3 = "";
 		String informacoesPersonagem[] = new String[3];
 		String statusDesafiosFase1[] = new String[5];
 		
@@ -424,9 +539,13 @@ public class jogoCompleto {
 		desafio1 = desafio1(nomePersonagem, sexoPersonagem, visualPersonagem);
 		historiaDesafio2(nomePersonagem, sexoPersonagem);
 		desafio2 = desafio2();
+		historiaDesafio3(sexoPersonagem, nomePersonagem);
+		desafio3 = desafio3(visualPersonagem);
 		
+		//armazena dentro do array se o usuário acertou ou errou os desafios, esse array será utilizado para fazer o feedback da primeira fase
 		statusDesafiosFase1[0] = desafio1;
 		statusDesafiosFase1[1] = desafio2;
+		statusDesafiosFase1[2] = desafio3;
 		
 		for(int i = 0; i <= statusDesafiosFase1.length-1; i++) {
 			System.out.println("DESAFIO "+i+" => "+statusDesafiosFase1[i]);
