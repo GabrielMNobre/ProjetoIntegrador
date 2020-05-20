@@ -1,9 +1,12 @@
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class jogoCompleto {
 	
+	static Scanner sc = new Scanner(System.in);
+	
 	static void participacaoJogo() {
-		Scanner sc = new Scanner(System.in);
 		String confirmacao;
 		int x = 0;
 		
@@ -30,7 +33,6 @@ public class jogoCompleto {
 	}
 	
 	static String[] definiPersonagem() {
-		Scanner sc = new Scanner(System.in);
 		String nomePersonagem = "";
 		int idade = 0,
 			x = 0;
@@ -108,19 +110,19 @@ public class jogoCompleto {
 	}
 	
 	static void carregarInicio(String status) {
-		Thread timer = new Thread();
 		switch(status) {
 			case "ok":
 				System.out.println("\nVocê está pronto? O jogo vai começar");
 				System.out.println("Mostre suas habilidades");
 				System.out.println("Tente vencer os desafios");
 				try {
-					timer.sleep(6000);
+					Thread.sleep(6000);
 					System.out.println("\n\n ██████           ██  ██████   ██████   ██████       ██████  ██████  ███    ███ ███████  ██████  █████       █████   ██████   ██████  ██████   █████  \n" + 
 										   "██    ██          ██ ██    ██ ██       ██    ██     ██      ██    ██ ████  ████ ██      ██      ██   ██     ██   ██ ██       ██    ██ ██   ██ ██   ██ \n" + 
 										   "██    ██          ██ ██    ██ ██   ███ ██    ██     ██      ██    ██ ██ ████ ██ █████   ██      ███████     ███████ ██   ███ ██    ██ ██████  ███████ \n" + 
 										   "██    ██     ██   ██ ██    ██ ██    ██ ██    ██     ██      ██    ██ ██  ██  ██ ██      ██      ██   ██     ██   ██ ██    ██ ██    ██ ██   ██ ██   ██ \n" + 
 										   " ██████       █████   ██████   ██████   ██████       ██████  ██████  ██      ██ ███████  ██████ ██   ██     ██   ██  ██████   ██████  ██   ██ ██   ██");
+					System.out.println("\n\t\t\t\t\t\t\t\tFASE I");
 				} catch (InterruptedException e) {
 					System.out.println("Mexeu");
 				}
@@ -188,7 +190,6 @@ public class jogoCompleto {
 	}
 	
 	static String desafio1(String nome, char sexo, String personagem) {
-		Scanner sc = new Scanner(System.in);
 		int resposta = 0,
 			cont = 1;
 		String artigo = "",
@@ -232,18 +233,21 @@ public class jogoCompleto {
 		do {
 			System.out.print("\nQual dígito que está faltando? ");
 			resposta = sc.nextInt();
-			
+			System.out.println("  _____    _____    _____\n"
+			          +" |     |  |     |  |     |\n"
+			          + " |  2  |  |  3  |  |  "+resposta+"  |\n"
+			          + " |_____|  |_____|  |_____|\n");
 			if(cont == 2) {
 				if(resposta == 7) {
-					System.out.println("Resposta Correta!");
+					System.out.println("Porta desbloqueada!");
 					status = "correta";
 				} else {
-					System.out.println("Resposta Incorreta!");
+					System.out.println("Senha incorreta!");
 					status = "incorreta";
 				}
 			} else {
 				if(resposta == 7) {
-					System.out.println("Resposta Correta!");
+					System.out.println("Porta desbloqueada!");
 					status = "correta";
 				} else {
 					System.out.println("Resposta Incorreta! Tente novamente.");
@@ -257,15 +261,153 @@ public class jogoCompleto {
 		
 	}
 	
+	static void historiaDesafio2(String nome, char sexo) {
+		String artigo = "";
+		if(sexo == 'M') {
+			artigo = "ele";
+		} else {
+			artigo = "ela";
+		}
+		
+		System.out.println("\n");
+		String historia[] = 
+			{
+				nome, "começou a perceber", "que suas contas de luz", "estavam atingindo", "valores exorbitantes,", "muito maiores do que", "a família",
+				"poderia pagar.", "Ele procurou", "em seus arquivos", "e observou uma brecha", "onde poderia agir.", "Havia uma parte do código", "que permitia",
+				"que com algumas mudanças", nome, "determinasse aonde","o relógio medidor de luz","pararia de contar", "os kWh(kiloWhats) gastos.",
+				"Para determinar", "ele precisa", "estipular o valor máximo a ser pago.",nome,"conversou", "com sua família e", "juntos decidiram que", 
+				"R$250,00 era o máximo que", "conseguiriam pagar.", "Com o valor máximo determinado,", nome, "entrou no sistema do", "relógio medidor",
+				"e descobriu que", "o preço do kWh era de R$0,4.", "Sabendo disso restava descobrir apenas", "aonde aonde o relógio pararia de contar",
+				"para isso", nome, "escreveu a seguinte função:", "\nMÁXIMO KWH x PREÇO KWH = VALOR MÁXIMO .", "\nCruzando com as informações", "que",artigo,
+				"já tinha,", nome, "reescreveu a função da seguinte maneira:", "\nMÁXIMO KWH x 0,4 = 250 .",nome, "tem apenas uma tentativa"
+				
+			};
+		
+		for (int i = 0; i <= historia.length-1; i++) {
+			if(historia[i].contains(".") || historia[i].contains(":")) {
+				System.out.print(historia[i]+"\n");
+			} else {
+				System.out.print(historia[i]+" ");
+			}
+			try {
+				Thread.sleep(500);
+			} catch(InterruptedException e) {
+				System.out.println(e);
+			}
+		}
+		
+	}
+	
+	static String desafio2() {
+		Scanner sc = new Scanner(System.in); 
+		int correta = 0;
+		int cont = 1;
+		String status = "";
+		char resposta = 0;
+		ArrayList<String> alternativas = new ArrayList();
+		
+		alternativas.add("620");
+		alternativas.add("625");
+		alternativas.add("650");
+		alternativas.add("600");
+		alternativas.add("575");
+		
+		 do {
+			System.out.println("O relógio terá que parar de registrar ao chegar a marca de quantos kWh?");
+			Collections.shuffle(alternativas);
+			for(int i = 0; i <= alternativas.size()-1; i++) {
+				switch (i) {
+					case 0:
+						System.out.println("a) "+alternativas.get(i));
+						break;
+					case 1:
+						System.out.println("b) "+alternativas.get(i));
+						break;
+					case 2:
+						System.out.println("c) "+alternativas.get(i));
+						break;
+					case 3:
+						System.out.println("d) "+alternativas.get(i));
+						break;
+					case 4:
+						System.out.println("e) "+alternativas.get(i));
+						break;
+				}
+			}
+				resposta = sc.next().toUpperCase().charAt(0);
+			
+				switch(resposta) {
+				case 'A':
+					if (alternativas.get(0).equals("625")) {
+						System.out.println("Quantidade de kWh correta!");
+						correta = 1;
+						status = "correta";
+					} else {
+						System.out.println("Quantidade de kWh incorreta!");
+						correta = 0;
+						status = "incorreta";
+					}
+					break;
+				case 'B':
+					if (alternativas.get(1).equals("625")) {
+						System.out.println("Quantidade de kWh correta!");
+						correta = 1;
+						status = "correta";
+					} else {
+						System.out.println("Quantidade de kWh incorreta!");
+						correta = 0;
+						status = "incorreta";
+					}
+					break;
+				case 'C':
+					if (alternativas.get(2).equals("625")) {
+						System.out.println("Quantidade de kWh correta!");
+						correta = 1;
+						status = "correta";
+					} else {
+						System.out.println("Quantidade de kWh incorreta!");
+						correta = 0;
+						status = "incorreta";
+					}
+					break;
+				case 'D':
+					if (alternativas.get(3).equals("625")) {
+						System.out.println("Quantidade de kWh correta!");
+						correta = 1;
+						status = "correta";
+					} else {
+						System.out.println("Quantidade de kWh incorreta!");
+						correta = 0;
+						status = "incorreta";
+					}
+					break;
+				case 'E':
+					if (alternativas.get(4).equals("625")) {
+						System.out.println("Quantidade de kWh correta!");
+						correta = 1;
+						status = "correta";
+					} else {
+						System.out.println("Quantidade de kWh incorreta!");
+						correta = 0;
+						status = "incorreta";
+					}
+					break;
+			}
+				cont++;
+		} while (correta != 1 && cont <= 2);
+		 return status;
+	}
+	
 	public static void main(String[] args) {
 		int idadePersonagem = 0;
 		char sexoPersonagem;
 		String nomePersonagem = "",
 			   condicaoInicioJogo = "",
 			   visualPersonagem = "",
-			   desafio1 = "";
+			   desafio1 = "",
+			   desafio2 = "";
 		String informacoesPersonagem[] = new String[3];
-		String statusDesafios[] = new String[5];
+		String statusDesafiosFase1[] = new String[5];
 		
 		participacaoJogo();
 		informacoesPersonagem = definiPersonagem();
@@ -280,8 +422,14 @@ public class jogoCompleto {
 		carregarInicio(condicaoInicioJogo);
 		historiaInicial(nomePersonagem, idadePersonagem, sexoPersonagem);
 		desafio1 = desafio1(nomePersonagem, sexoPersonagem, visualPersonagem);
+		historiaDesafio2(nomePersonagem, sexoPersonagem);
+		desafio2 = desafio2();
 		
-		statusDesafios[1] = desafio1;
-		System.out.println(statusDesafios[1]);
+		statusDesafiosFase1[0] = desafio1;
+		statusDesafiosFase1[1] = desafio2;
+		
+		for(int i = 0; i <= statusDesafiosFase1.length-1; i++) {
+			System.out.println("DESAFIO "+i+" => "+statusDesafiosFase1[i]);
+		}
 	}
 }
