@@ -511,6 +511,133 @@ public class jogoCompleto {
 		return status;
 	}
 	
+	static void historiaDesafio4(char sexo, String nome) {
+		//historia do desafio 4
+		String artigo = "";
+		//define o a partir do sexo do personagem o artigo da frase
+		if(sexo == 'M') {
+			artigo = "ele";
+		} else {
+			artigo = "ela";
+		}
+		System.out.println("\n");
+		//utiliza o nome e o artigo para escrever a história
+		String historia[] = 
+			{
+				"O acesso ao computador", "do zelador", "foi um sucesso,", "porém tinha um problema,", "para descobrir a senha", artigo, "tinha demorado",
+				"10 minutos.", "Então só restavam", "mais 20 minutos para o", "zelador voltar,", "por isso", nome, "tinha que agir", "com muita velocidade.", 
+				"Tinham duas coisas", "que", nome, "queria fazer,", "acessar o servidor de câmeras do prédio", "e acessar", "o servidor de alarmes.",
+				"Com o acesso", "ao servidor de câmeras", "ele vai conseguir saber tudo", "o que está acontecendo", "no prédio.", "Então", nome, 
+				"começou por esse servidor,", "para conseguir acessar", "era necessário obter a senha", "do servidor,", "para isso", artigo, "tinha que",
+				"analisar o código.", nome, "observou que a senha", "era guardada dentro do sistema", "com uma criptografia", "de hexadecimal,", "no",
+				"sistema havia um comentário", "que exemplificava a", "criptografia:", "\nSENHA = 64202 .", "SENHA GUARDADA NO SISTEMA = FACA .", "Logo",
+				artigo, "percebeu que", "para descobrir a senha do servidor era só", "converter a senha que estava no sistema", "em base hexadecimal", 
+				"para base decimal.", "Essa senha é", "composta por", "5 dígitos."
+				
+			};
+		//exibição com delay de 5 segundos
+		for (int i = 0; i <= historia.length-1; i++) {
+			if(historia[i].contains(".") || historia[i].contains(":")) {
+				System.out.print(historia[i]+"\n");
+			} else {
+				System.out.print(historia[i]+" ");
+			}
+			try {
+				Thread.sleep(500);
+			} catch(InterruptedException e) {
+				System.out.println(e);
+			}
+		}
+	}
+	
+	static String desafio4(String personagem) {
+		//estrutura desafio 4
+		Random posicao = new Random();
+		String senhaServidor = "",
+			   senhaInserida = "";
+		int elevado = 0;
+		int senhaDecimal = 0,
+			correta = 0,
+			tentativa = 1;
+		String digito1 = "",
+			   digito2 = "",
+			   digito3 = "",
+			   digito4 = "",
+			   digito5 = "",
+			   status = "";
+		String[] possibilidadeSenha = new String[5];
+		//adicionando possíveis senhas
+		possibilidadeSenha[0] = "CADA";
+		possibilidadeSenha[1] = "BABA";
+		possibilidadeSenha[2] = "FADA"; 
+		possibilidadeSenha[3] = "DADA"; 
+		//escolhendo uma das opções de senha de dentro do array
+		senhaServidor = possibilidadeSenha[posicao.nextInt(4)];
+		
+		
+			
+			//transformando a senha escolhida de hexadecimal para decimal
+			for (int i = 0; i < senhaServidor.length(); i++) {
+				if (i == 0) {
+					elevado = 3;
+				} else if (i == 1) {
+					elevado = 2;
+				} else if (i == 2) {
+					elevado = 1;
+				} else if (i == 3) {
+					elevado = 0;
+				}
+			 	if (senhaServidor.substring(i, (i+1)).equals("A")) {
+			 		senhaDecimal += 10 * (int)Math.pow(16, elevado);
+			 	} else if (senhaServidor.substring(i, (i+1)).equals("B")) {
+			 		senhaDecimal += 11 * (int)Math.pow(16, elevado);
+			 	} else if (senhaServidor.substring(i, (i+1)).equals("C")) {
+			 		senhaDecimal += 12 * (int)Math.pow(16, elevado);
+			 	} else if (senhaServidor.substring(i, (i+1)).equals("D")) {
+			 		senhaDecimal += 13 * (int)Math.pow(16, elevado);
+			 	} else if (senhaServidor.substring(i, (i+1)).equals("F")) {
+			 		senhaDecimal += 15 * (int)Math.pow(16, elevado);
+			 	}
+			}
+			//pedindo para o usuário inputar a senha correta
+			do {
+			System.out.println("\nA senha que está no servidor é: "+senhaServidor);
+			System.out.println("Qual a senha para acessar o servidor?");
+			System.out.println("\n"+personagem+"  _____    _____    _____    _____    _____\n"
+			          +" |     |  |     |  |     |  |     |  |     |\n"
+			          + " |  ?  |  |  ?  |  |  ?  |  |  ?  |  |  ?  |\n"
+			          + " |_____|  |_____|  |_____|  |_____|  |_____|\n");
+			System.out.println("Entre com o primeiro dígito: ");
+			digito1 = sc.next();
+			System.out.println("Entre com o segundo dígito: ");
+			digito2 = sc.next();
+			System.out.println("Entre com o terceiro dígito: ");
+			digito3 = sc.next();
+			System.out.println("Entre com o quarto dígito: ");
+			digito4 = sc.next();
+			System.out.println("Entre com o quinto dígito: ");
+			digito5 = sc.next();
+			
+			senhaInserida = digito1 +""+ digito2 +""+ digito3 +""+ digito4 +""+ digito5; 
+			System.out.println("  _____    _____    _____    _____    _____\n"
+			          +" |     |  |     |  |     |  |     |  |     |\n"
+			          + " |  "+digito1+"  |  |  "+digito2+"  |  |  "+digito3+"  |  |  "+digito4+"  |  |  "+digito5+"  |\n"
+			          + " |_____|  |_____|  |_____|  |_____|  |_____|\n");
+			if(senhaInserida.equals(String.valueOf(senhaDecimal))) {
+				System.out.println("Senha correta! Servidor pode ser acessado!");
+				correta = 1;
+				status = "correta";
+			} else {
+				System.out.println("Senha Incorreta!Não foi possível acessar o servidor!");
+				correta = 0;
+				status = "incorreta";
+			}
+			tentativa++;
+			//laço de repetição para a execução se a alternativa estiver correta ou o número de tentativas extrapole
+		}while(correta != 1 && tentativa <= 2);
+		return status;
+	}
+	
 	public static void main(String[] args) {
 		//utilizamos a main como um maestro, apenas chamando as funções
 		int idadePersonagem = 0;
@@ -520,7 +647,8 @@ public class jogoCompleto {
 			   visualPersonagem = "",
 			   desafio1 = "",
 			   desafio2 = "",
-			   desafio3 = "";
+			   desafio3 = "",
+			   desafio4 = "";
 		String informacoesPersonagem[] = new String[3];
 		String statusDesafiosFase1[] = new String[5];
 		
@@ -541,14 +669,17 @@ public class jogoCompleto {
 		desafio2 = desafio2();
 		historiaDesafio3(sexoPersonagem, nomePersonagem);
 		desafio3 = desafio3(visualPersonagem);
+		historiaDesafio4(sexoPersonagem, nomePersonagem);
+		desafio4 = desafio4(visualPersonagem);
 		
 		//armazena dentro do array se o usuário acertou ou errou os desafios, esse array será utilizado para fazer o feedback da primeira fase
 		statusDesafiosFase1[0] = desafio1;
 		statusDesafiosFase1[1] = desafio2;
 		statusDesafiosFase1[2] = desafio3;
+		statusDesafiosFase1[3] = desafio4;
 		
 		for(int i = 0; i <= statusDesafiosFase1.length-1; i++) {
-			System.out.println("DESAFIO "+i+" => "+statusDesafiosFase1[i]);
+			System.out.println("DESAFIO "+(i+1)+" => "+statusDesafiosFase1[i]);
 		}
 	}
 }
