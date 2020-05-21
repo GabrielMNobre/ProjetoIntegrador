@@ -38,14 +38,27 @@ public class jogoCompleto {
 		//usuário insere as informações do funcionário e armazena em um array
 		String nomePersonagem = "";
 		int idade = 0,
-			x = 0;
-		char sexo;
+			x = 0,
+			z = 0;
+		char sexo = 0;
 		String resultado[] = new String[3];
 		
 		System.out.println("Bem-vindo ao MatHacker!");
 		System.out.println("\nVamos escolher como será seu personagem");
-		System.out.println("\nQual o sexo? \nM - Masculino \nF - Feminino");
-		sexo = sc.next().toUpperCase().charAt(0);
+		
+		//confere se o sexo passado pelo usuário é um tipo válido, M ou F
+		while (z != 1) {
+			System.out.println("\nQual o sexo? \nM - Masculino \nF - Feminino");
+			sexo = sc.next().toUpperCase().charAt(0);
+			if (sexo != 'M' && sexo != 'F') {
+				System.out.println("Opção inexistente!\nInsira uma opção disponível!");
+				z = 0;
+			} else {
+				z = 1;
+			}
+		}
+		
+		//confere se o personagem tem idade maior que 18 anos
 		System.out.print("\nQual o nome desejado? ");
 		nomePersonagem = sc.next();
 		
@@ -317,7 +330,7 @@ public class jogoCompleto {
 		int cont = 1;
 		String status = "";
 		char resposta = 0;
-		ArrayList<String> alternativas = new ArrayList();
+		ArrayList<String> alternativas = new ArrayList<String>();
 		//adicionando as alternativas ao arraylist
 		alternativas.add("620");
 		alternativas.add("625");
@@ -326,7 +339,7 @@ public class jogoCompleto {
 		alternativas.add("575");
 		
 		 do {
-			System.out.println("O relógio terá que parar de registrar ao chegar a marca de quantos kWh?");
+			System.out.println("\nO relógio terá que parar de registrar ao chegar a marca de quantos kWh?");
 			//troca as alternativas de posição
 			Collections.shuffle(alternativas);
 			//exie todas as alternatias do arraylist 
@@ -607,15 +620,15 @@ public class jogoCompleto {
 			          +" |     |  |     |  |     |  |     |  |     |\n"
 			          + " |  ?  |  |  ?  |  |  ?  |  |  ?  |  |  ?  |\n"
 			          + " |_____|  |_____|  |_____|  |_____|  |_____|\n");
-			System.out.println("Entre com o primeiro dígito: ");
+			System.out.print("Entre com o primeiro dígito: ");
 			digito1 = sc.next();
-			System.out.println("Entre com o segundo dígito: ");
+			System.out.print("Entre com o segundo dígito: ");
 			digito2 = sc.next();
-			System.out.println("Entre com o terceiro dígito: ");
+			System.out.print("Entre com o terceiro dígito: ");
 			digito3 = sc.next();
-			System.out.println("Entre com o quarto dígito: ");
+			System.out.print("Entre com o quarto dígito: ");
 			digito4 = sc.next();
-			System.out.println("Entre com o quinto dígito: ");
+			System.out.print("Entre com o quinto dígito: ");
 			digito5 = sc.next();
 			
 			senhaInserida = digito1 +""+ digito2 +""+ digito3 +""+ digito4 +""+ digito5; 
@@ -628,13 +641,114 @@ public class jogoCompleto {
 				correta = 1;
 				status = "correta";
 			} else {
-				System.out.println("Senha Incorreta!Não foi possível acessar o servidor!");
+				System.out.println("Senha Incorreta! Não foi possível conectar ao servidor!");
 				correta = 0;
 				status = "incorreta";
 			}
 			tentativa++;
 			//laço de repetição para a execução se a alternativa estiver correta ou o número de tentativas extrapole
 		}while(correta != 1 && tentativa <= 2);
+		return status;
+	}
+	
+	static void historiaDesafio5(char sexo, String nome) {
+		//historia do desafio 4
+		String artigo = "";
+		//define o a partir do sexo do personagem o artigo da frase
+		if(sexo == 'M') {
+			artigo = "ele";
+		} else {
+			artigo = "ela";
+		}
+		System.out.println("\n");
+		//utiliza o nome e o artigo para escrever a história
+		String historia[] = 
+			{
+				"Para tentar achar", "a senha do servidor de", "câmeras,", nome, "gastou mais 10 minutos.", "Por isso as",
+				"coisas tinham se dificultado,", "só restavam mais 10 minutos", "para", artigo, "conseguir descobrir a senha do", 
+				"servidor de alarmes.", "Se tudo correr bem,", nome, "termina de acessar", "e consegue sair da sala do", 
+				"zelador antes dele voltar.", nome, "quer o acesso aos", "alarmes", "porque", "com os acessos em mãos,",
+				"ele vai conseguir", "programar o sistema", "para enviar alertas de movimento", "próximos ao seu", "andar.",
+				"Conseguindo desta forma", "estar preparado e", "antecipado a qualquer pessoa", "que se aproxime de sua casa.",
+				nome, "começou a procurar", "no código", "o algoritmo de formação da senha", "do servidor de câmeras.", "Quando", artigo,
+				"achou, ele percebeu", "que esta seria a", "resolução que traria mais dificuldade,", "pois o algoritmo de formação", "era o seguinte:",
+				"Primeiro dígito do produto de 12345679 pela chave gerada pelo sistema,", "onde para cada dígito será fornecido uma chave.",
+				"A senha é formada por", "4 dígitos.", nome, "não entendeu",
+				"muito, por isso", "continuou procurando", "e achou um exemplo mais claro", "que era:", "\nDÍGITO 1 =>", "12345679 x 9 =>", "1", 
+				"(onde 9 foi a chave fornecida pelo sistema", "e 1 o primeiro dígito do produto)", "\nDÍGITO 2 =>", "12345679 x 63 =>", "7", 
+				"(onde 63 foi a chave fornecida pelo sistema", "e 7 o primeiro dígito do produto)", "\nDÍGITO 3 =>", "12345679 x 0 =>", "0", 
+				"(onde 0 foi a chave fornecida pelo sistema", "e 0 o primeiro dígito do produto)","\nDÍGITO 4 =>", "12345679 x 9 =>", "1", 
+				"(onde 9 foi a chave fornecida pelo sistema", "e 1 o primeiro dígito do produto)", "\nA senha seria => 1701 .", nome,
+				"tem apenas 2 tentativas.\n"
+			};
+		//exibição com delay de 5 segundos
+		for (int i = 0; i <= historia.length-1; i++) {
+			if(historia[i].contains(".") || historia[i].contains(":")) {
+				System.out.print(historia[i]+"\n");
+			} else {
+				System.out.print(historia[i]+" ");
+			}
+			try {
+				Thread.sleep(500);
+			} catch(InterruptedException e) {
+				System.out.println(e);
+			}
+		}
+	}
+	
+	static String desafio5(String personagem) {
+		String senha = "",
+			   status = "",
+			   senhaInserida = "";
+		int digito1 = 0,
+			digito2 = 0,
+			digito3 = 0,
+			digito4 = 0,
+			correta = 0,
+			tentativas = 0;
+		Random variavel = new Random();
+		int digitos[] = new int[4];
+		//determina que o valor da senha do zelador terá que ser entre 1000 e 9999
+		senha = String.valueOf(variavel.nextInt((9999 - 1000) + 1) + 1000);
+		do {
+			//pede a entrada de cada dígito individualmente
+			System.out.println("\nQual a senha para acessar o servidor?\n");
+			//gera as chaves da senha baseado na senha gerada automaticamente 
+			for(int i = 0; i <= digitos.length-1; i++) {
+				digitos[i] = Integer.parseInt(senha.substring(i, (i+1)));
+				System.out.println("A chave para o "+(i+1)+"° dígito => "+(digitos[i]*9));
+			}
+			System.out.println("\n"+personagem+"  _____    _____    _____    _____\n"
+			          +" |     |  |     |  |     |  |     |\n"
+			          + " |  ?  |  |  ?  |  |  ?  |  |  ?  |\n"
+			          + " |_____|  |_____|  |_____|  |_____|\n");
+			System.out.print("Entre com o primeiro dígito: ");
+			digito1 = sc.nextInt();
+			System.out.print("Entre com o segundo dígito: ");
+			digito2 = sc.nextInt();
+			System.out.print("Entre com o terceiro dígito: ");
+			digito3 = sc.nextInt();
+			System.out.print("Entre com o quarto dígito: ");
+			digito4 = sc.nextInt();
+			
+			//transforma a senha em uma String
+			senhaInserida = String.valueOf(digito1) + String.valueOf(digito2) + String.valueOf(digito3) + String.valueOf(digito4);
+			System.out.println("  _____    _____    _____    _____\n"
+			          +" |     |  |     |  |     |  |     |\n"
+			          + " |  "+digito1+"  |  |  "+digito2+"  |  |  "+digito3+"  |  |  "+digito4+"  |\n"
+			          + " |_____|  |_____|  |_____|  |_____|\n");
+			
+			//compara a senha gerada no início com a senha inserida pelo usuário
+			if(senha.equals(senhaInserida)) {
+				System.out.println("Senha correta! Servidor pode ser acessado!");
+				correta = 1;
+				status = "correta";
+			}  else {
+				System.out.println("Senha incorreta! Não foi possível conectar ao servidor!\n");
+				correta = 0;
+				status = "incorreta";
+			}
+		} while(correta != 1 && tentativas <= 2);
 		return status;
 	}
 	
@@ -648,7 +762,8 @@ public class jogoCompleto {
 			   desafio1 = "",
 			   desafio2 = "",
 			   desafio3 = "",
-			   desafio4 = "";
+			   desafio4 = "",
+			   desafio5 = "";
 		String informacoesPersonagem[] = new String[3];
 		String statusDesafiosFase1[] = new String[5];
 		
@@ -656,7 +771,7 @@ public class jogoCompleto {
 		informacoesPersonagem = definiPersonagem();
 		
 		sexoPersonagem = informacoesPersonagem[0].charAt(0);
-		nomePersonagem = informacoesPersonagem[1].substring(0, 1).toUpperCase().concat(informacoesPersonagem[1].substring(1));
+		nomePersonagem = informacoesPersonagem[1].substring(0, 1).toUpperCase().concat(informacoesPersonagem[1].substring(1).toLowerCase());
 		idadePersonagem = Integer.parseInt(informacoesPersonagem[2]);
 		
 		condicaoInicioJogo = confereInformacoes(informacoesPersonagem);
@@ -671,12 +786,15 @@ public class jogoCompleto {
 		desafio3 = desafio3(visualPersonagem);
 		historiaDesafio4(sexoPersonagem, nomePersonagem);
 		desafio4 = desafio4(visualPersonagem);
+		historiaDesafio5(sexoPersonagem, nomePersonagem);
+		desafio5 = desafio5(visualPersonagem);
 		
 		//armazena dentro do array se o usuário acertou ou errou os desafios, esse array será utilizado para fazer o feedback da primeira fase
 		statusDesafiosFase1[0] = desafio1;
 		statusDesafiosFase1[1] = desafio2;
 		statusDesafiosFase1[2] = desafio3;
 		statusDesafiosFase1[3] = desafio4;
+		statusDesafiosFase1[4] = desafio5;
 		
 		for(int i = 0; i <= statusDesafiosFase1.length-1; i++) {
 			System.out.println("DESAFIO "+(i+1)+" => "+statusDesafiosFase1[i]);
