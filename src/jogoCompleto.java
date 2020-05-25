@@ -679,7 +679,7 @@ public class jogoCompleto {
 				"(onde 63 foi a chave fornecida pelo sistema", "e 7 o primeiro dígito do produto)", "\nDÍGITO 3 =>", "12345679 x 0 =>", "0", 
 				"(onde 0 foi a chave fornecida pelo sistema", "e 0 o primeiro dígito do produto)","\nDÍGITO 4 =>", "12345679 x 9 =>", "1", 
 				"(onde 9 foi a chave fornecida pelo sistema", "e 1 o primeiro dígito do produto)", "\nA senha seria => 1701 .", nome,
-				"tem apenas 2 tentativas.\n"
+				"pode tentar até acertar.\n"
 			};
 		//exibição com delay de 5 segundos
 		for (int i = 0; i <= historia.length-1; i++) {
@@ -748,8 +748,106 @@ public class jogoCompleto {
 				correta = 0;
 				status = "incorreta";
 			}
-		} while(correta != 1 && tentativas <= 2);
+		}while(correta != 1 && tentativas <= 2);
+		System.out.println("\t\t\t\t\t\t\tFIM FASE 1\n");
 		return status;
+	}
+	
+	static String feedbackFase1(String array[]) {
+		String retorno = "";
+		for(int i = 0; i <= array.length-1; i++) {
+			if (i == 0) {
+				if(array[i].equals("correta")) {
+					retorno += "\n\t\t\t\t\t\t __________________________\n";
+					retorno += "\t\t\t\t\t\t|                          |\n";
+					retorno += "\t\t\t\t\t\t| Você acertou o desafio "+(i+1)+" |\n";
+				} else {
+					retorno += "\n\t\t\t\t\t\t __________________________\n";
+					retorno += "\t\t\t\t\t\t|                          |\n";
+					retorno += "\t\t\t\t\t\t| Você errou o desafio "+(i+1)+"   |\n";
+				}
+			} else if (i == 1) {
+				if(array[i].equals("correta")) {
+					retorno += "\t\t\t\t\t\t| Você acertou o desafio "+(i+1)+" |\n";
+				} else {
+					retorno += "\t\t\t\t\t\t| Você errou o desafio "+(i+1)+"   |\n";
+				}
+			} else if (i == 2) {
+				if(array[i].equals("correta")) {
+					retorno += "\t\t\t\t\t\t| Você acertou o desafio "+(i+1)+" |\n";
+				} else {
+					retorno += "\t\t\t\t\t\t| Você errou o desafio "+(i+1)+"   |\n";
+				}
+			} else if (i == 3) {
+				if(array[i].equals("correta")) {
+					retorno += "\t\t\t\t\t\t| Você acertou o desafio "+(i+1)+" |\n";
+				} else {
+					retorno += "\t\t\t\t\t\t| Você errou o desafio "+(i+1)+"   |\n";
+				}
+			} else if (i == 4) {
+				if(array[i].equals("correta")) {
+					retorno += "\t\t\t\t\t\t| Você acertou o desafio "+(i+1)+" |\n";
+					retorno += "\t\t\t\t\t\t|__________________________|\n";
+				} else {
+					retorno += "\t\t\t\t\t\t| Você errou o desafio "+(i+1)+"   |\n";
+					retorno += "\t\t\t\t\t\t|__________________________|\n";
+				}
+			}
+		}
+		return retorno;
+	}
+	
+	static String[] necessidadeRefazer(String dados[], String nome, char sexo, String visual) {
+		String retorno[] = new String[5];
+		String retDesafio = "";
+		int x = 0;
+		for(int i = 0; i <= dados.length-1; i++) {
+			if(dados[i].equals("incorreta")) {
+				x++;
+			}
+		}
+		
+		if(x != 0) {
+			System.out.println("\nVocê terá uma chance de realizar apenas os desafios que você errou!");
+			System.out.println("Se não conseguir acertar todos...\n");
+			System.out.println("GAME OVER\n");
+			for (int i = 0; i <= dados.length-1; i++) {
+				if(dados[i].equals("incorreta")) {
+					System.out.println("Você não acertou o desafio "+(i+1)+".\nFaça novamente!");
+					if(i == 0) {
+						retDesafio = desafio1(nome, sexo, visual);
+					} else if(i == 1) {
+						retDesafio = desafio2();
+					} else if(i == 2) {
+						retDesafio = desafio3(visual);
+					} else if(i == 3) {
+						retDesafio = desafio4(visual);
+					} else {
+						retDesafio = desafio5(visual);
+					}
+					retorno[i] = retDesafio;
+				} else {
+					retorno[i] = dados[i];
+				}
+			}
+		}
+		return retorno;
+	}
+	
+	static void fimFase1(String dados[]) {
+		int x = 0;
+		for(int i = 0; i <= dados.length-1; i++) {
+			if(dados[i].equals("incorreta")) {
+				x++;
+			}
+		}
+		
+		if(x == 0) {
+			System.out.println("\n\t\t\t\t\t\t\tVAMOS PARA PRÓXIMA FASE!");
+		} else {
+			System.out.println("\n\t\t\t\t\t\t\t\nGAME OVER");
+			System.exit(0);
+		}
 	}
 	
 	public static void main(String[] args) {
@@ -763,9 +861,11 @@ public class jogoCompleto {
 			   desafio2 = "",
 			   desafio3 = "",
 			   desafio4 = "",
-			   desafio5 = "";
+			   desafio5 = "",
+			   resultadoDesafio1 = "";
 		String informacoesPersonagem[] = new String[3];
 		String statusDesafiosFase1[] = new String[5];
+		String statusRefeito[] = new String[5];
 		
 		participacaoJogo();
 		informacoesPersonagem = definiPersonagem();
@@ -796,8 +896,9 @@ public class jogoCompleto {
 		statusDesafiosFase1[3] = desafio4;
 		statusDesafiosFase1[4] = desafio5;
 		
-		for(int i = 0; i <= statusDesafiosFase1.length-1; i++) {
-			System.out.println("DESAFIO "+(i+1)+" => "+statusDesafiosFase1[i]);
-		}
+		resultadoDesafio1 = feedbackFase1(statusDesafiosFase1);
+		System.out.println(resultadoDesafio1);
+		statusRefeito = necessidadeRefazer(statusDesafiosFase1, nomePersonagem, sexoPersonagem, visualPersonagem);
+		fimFase1(statusRefeito);
 	}
 }
