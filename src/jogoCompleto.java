@@ -339,6 +339,7 @@ public class jogoCompleto {
 		alternativas.add("575");
 		
 		 do {
+			System.out.println("\nDescobrir o máximo de kWh => MÁXIMO KWH x 0,4 = 250");
 			System.out.println("\nO relógio terá que parar de registrar ao chegar a marca de quantos kWh?");
 			//troca as alternativas de posição
 			Collections.shuffle(alternativas);
@@ -753,16 +754,20 @@ public class jogoCompleto {
 		return status;
 	}
 	
+	//detalha com o usuári se saiu em cada desafio(acerto ou erro)
 	static String feedbackFase1(String array[]) {
 		String retorno = "";
+		//percorre o array e verifica cada posicao
 		for(int i = 0; i <= array.length-1; i++) {
+			//checa a correspodencia das posições do arrya com as questões ex: posicao 0 do array == desafio1
 			if (i == 0) {
+				//verifica se o usuário acertou ou errou o desafio, adicionando a String retorno se foi acerto ou erro
 				if(array[i].equals("correta")) {
-					retorno += "\n\t\t\t\t\t\t __________________________\n";
+					retorno += "\t\t\t\t\t\t __________________________\n";
 					retorno += "\t\t\t\t\t\t|                          |\n";
 					retorno += "\t\t\t\t\t\t| Você acertou o desafio "+(i+1)+" |\n";
 				} else {
-					retorno += "\n\t\t\t\t\t\t __________________________\n";
+					retorno += "\t\t\t\t\t\t __________________________\n";
 					retorno += "\t\t\t\t\t\t|                          |\n";
 					retorno += "\t\t\t\t\t\t| Você errou o desafio "+(i+1)+"   |\n";
 				}
@@ -794,25 +799,30 @@ public class jogoCompleto {
 				}
 			}
 		}
+		//retorna a String retorno, que contém o feedback geral do usuário dizendo onde errou ou acertou
 		return retorno;
 	}
 	
+	//se na função feedbackFase1 o usuário tiver algum erro, essa função é exibida para ele tentar refazer o desafio que foi errado
 	static String[] necessidadeRefazer(String dados[], String nome, char sexo, String visual) {
 		String retorno[] = new String[5];
 		String retDesafio = "";
 		int x = 0;
 		for(int i = 0; i <= dados.length-1; i++) {
+			//confere se o array tem alguma posição incorreta
 			if(dados[i].equals("incorreta")) {
 				x++;
 			}
 		}
 		
 		if(x != 0) {
+			//se existir alguma posição marcada como errada aqui é permitido refaze-la
 			System.out.println("\nVocê terá uma chance de realizar apenas os desafios que você errou!");
 			System.out.println("Se não conseguir acertar todos...\n");
 			System.out.println("GAME OVER\n");
 			for (int i = 0; i <= dados.length-1; i++) {
 				if(dados[i].equals("incorreta")) {
+					//exibe o desafio que foi errado de acordo com a posição do array
 					System.out.println("Você não acertou o desafio "+(i+1)+".\nFaça novamente!");
 					if(i == 0) {
 						retDesafio = desafio1(nome, sexo, visual);
@@ -834,8 +844,10 @@ public class jogoCompleto {
 		return retorno;
 	}
 	
+	//função que demarca o fim da fase 1
 	static void fimFase1(String dados[]) {
 		int x = 0;
+		//confere se o array passado contém alguma resposta incorreta
 		for(int i = 0; i <= dados.length-1; i++) {
 			if(dados[i].equals("incorreta")) {
 				x++;
@@ -843,16 +855,33 @@ public class jogoCompleto {
 		}
 		
 		if(x == 0) {
-			System.out.println("\n\t\t\t\t\t\t\tVAMOS PARA PRÓXIMA FASE!");
+			//se não tem nenhuma incorreta, o personagem vira o melhor hacker de sp
+			System.out.println("\n");
+			System.out.println("███╗   ███╗███████╗██╗     ██╗  ██╗ ██████╗ ██████╗     ██╗  ██╗ █████╗  ██████╗██╗  ██╗███████╗██████╗     ██████╗ ███████╗    ███████╗██████╗ \n" + 
+							   "████╗ ████║██╔════╝██║     ██║  ██║██╔═══██╗██╔══██╗    ██║  ██║██╔══██╗██╔════╝██║ ██╔╝██╔════╝██╔══██╗    ██╔══██╗██╔════╝    ██╔════╝██╔══██╗\n" + 
+							   "██╔████╔██║█████╗  ██║     ███████║██║   ██║██████╔╝    ███████║███████║██║     █████╔╝ █████╗  ██████╔╝    ██║  ██║█████╗      ███████╗██████╔╝\n" + 
+							   "██║╚██╔╝██║██╔══╝  ██║     ██╔══██║██║   ██║██╔══██╗    ██╔══██║██╔══██║██║     ██╔═██╗ ██╔══╝  ██╔══██╗    ██║  ██║██╔══╝      ╚════██║██╔═══╝ \n" + 
+							   "██║ ╚═╝ ██║███████╗███████╗██║  ██║╚██████╔╝██║  ██║    ██║  ██║██║  ██║╚██████╗██║  ██╗███████╗██║  ██║    ██████╔╝███████╗    ███████║██║     \n" + 
+							   "╚═╝     ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝    ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝    ╚═════╝ ╚══════╝    ╚══════╝╚═╝    ");
+			//demarca o início da fase 2
+			System.out.println("\t\t\t\t\t\t\t\tFASE 2");
 		} else {
-			System.out.println("\n\t\t\t\t\t\t\t\nGAME OVER");
+			//se tiver questão incorreta no array, determina o fim do jogo
+			System.out.println("\t\t\t\t ██████╗  █████╗ ███╗   ███╗███████╗     ██████╗ ██╗   ██╗███████╗██████╗ \n" + 
+							   "\t\t\t\t██╔════╝ ██╔══██╗████╗ ████║██╔════╝    ██╔═══██╗██║   ██║██╔════╝██╔══██╗\n" + 
+							   "\t\t\t\t██║  ███╗███████║██╔████╔██║█████╗      ██║   ██║██║   ██║█████╗  ██████╔╝\n" + 
+							   "\t\t\t\t██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗\n" + 
+							   "\t\t\t\t╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║\n" + 
+							   "\t\t\t\t ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝");
+			//fecha a aplicação sendo necessário o reinicio do jogo
 			System.exit(0);
 		}
 	}
 	
 	public static void main(String[] args) {
 		//utilizamos a main como um maestro, apenas chamando as funções
-		int idadePersonagem = 0;
+		int idadePersonagem = 0,
+			correta = 0;
 		char sexoPersonagem;
 		String nomePersonagem = "",
 			   condicaoInicioJogo = "",
@@ -899,6 +928,19 @@ public class jogoCompleto {
 		resultadoDesafio1 = feedbackFase1(statusDesafiosFase1);
 		System.out.println(resultadoDesafio1);
 		statusRefeito = necessidadeRefazer(statusDesafiosFase1, nomePersonagem, sexoPersonagem, visualPersonagem);
-		fimFase1(statusRefeito);
+		
+		for(int i = 0; i <= statusDesafiosFase1.length-1; i++) {
+			if(statusDesafiosFase1[i].equals("incorreta")) {
+				//confere se o usuário acertou ou não todos os desafios
+				correta++;
+			}
+		}
+		if(correta > 0) {
+			//se ele não acertou todas, passamos o array que retornou da função necessidadeRefazer
+			fimFase1(statusRefeito);
+		} else {
+			//se ele acertou todas as questões, passamos o array original statusDesafiosFase1
+			fimFase1(statusDesafiosFase1);
+		}
 	}
 }
