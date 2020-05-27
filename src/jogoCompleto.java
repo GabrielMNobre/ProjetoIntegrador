@@ -126,6 +126,7 @@ public class jogoCompleto {
 		return boneco;
 	}
 	
+	/******************************************************************INÍCIO FASE 1****************************************************************/
 	static void carregarInicio(String status) {
 		//método que marca o início da primeira fase
 		switch(status) {
@@ -653,7 +654,7 @@ public class jogoCompleto {
 	}
 	
 	static void historiaDesafio5(char sexo, String nome) {
-		//historia do desafio 4
+		//historia do desafio 5
 		String artigo = "";
 		//define o a partir do sexo do personagem o artigo da frase
 		if(sexo == 'M') {
@@ -877,6 +878,54 @@ public class jogoCompleto {
 			System.exit(0);
 		}
 	}
+	/******************************************************************FIM FASE 1****************************************************************/
+	
+	/******************************************************************INÍCIO FASE 2*************************************************************/
+	
+	static void historiaInicialFase2(char sexo, String nome) {
+		//historia inicial da segunda fase
+		String artigo = "";
+		//define o a partir do sexo do personagem o artigo da frase
+		if(sexo == 'M') {
+			artigo = "ele";
+		} else {
+			artigo = "ela";
+		}
+		System.out.println("\n");
+		//utiliza o nome e o artigo para escrever a história
+		String historia[] = 
+			{
+				nome, "conseguiu provar", "a toda a comunidade dos hackers", "que ele era o melhor,", "podendo se entitular como:",
+				"O MELHOR HACKER DE SÃO  PAULO.", "Por ter tamanha capacidade,", artigo, "começou a ser", "invejado por outros", 
+				"hackers.", "Na tentativa de", "se tornar melhor que ele", "um grupo de hackers se uniu,", "porém, esse grupo",
+				"não fazia coisas", "que não faziam mal a ninguém", "como", nome, "fazia.", "O grupo realizava", "ações que eram",
+				"prejudiciais a comunidade", "como roubo de informações", "e até mesmo em casos extremos,", "roubo de bitcoins,",
+				"moeda valiosa no mundo dos hackers.", "Esses delitos começaram a", "ser mais frequentes", "e a polícia", "precisou intervir.",
+				"A equipe de defesa cibernética", "da polícia, foi chamada", " e tentou de diversas maneiras", "impedir este grupo,", "porém as tetativas foram",
+				"todas por água abaixo.", "E a cada embate com a polícia,","que eles venciam,","o grupo de hackers", "se tornava cada vez mais forte.",
+				"Com a força do grupo aumentando,", "e a força da polícia para", "combatê-los cada", "vez mais fraca,","o grupo se prepara",
+				"para o ataque de maior", "intensidade:","ATACAR TODA A BASE DE DADOS", "DO FACEBOOK.", "Uma vez dentro da base", "o grupo teria acesso",
+				"a informações pessoais de 500 milhões de usuários", "e conseguiria vender tudo na", "deep web, recebendo muito dinheiro", "nessa transação.",
+				"A polícia começou a suspeitar", "sobre um ataque maior,", "devido o crescimento", "na dificuldade dos últimos desafios.",
+				"Pensando nisso,", "a polícia sabendo que", "não tinha forças para combater o","grupo, decide procurar", "um hacker bom para combatê-los.",
+				"Após procurar muito", "a polícia achou", nome, "que era cohecido", "como o melhor hacker de São Paulo", "se encaixando", 
+				"perfeitamente no que a polícia", "procurava.", "A polícia", "fez a proposta e", nome, "aceitou, agora o melhor hacker fazia",
+				"parte da equipe da polícia."
+			};
+		//exibição com delay de 5 segundos
+		for (int i = 0; i <= historia.length-1; i++) {
+			if(historia[i].contains(".") || historia[i].contains(":")) {
+				System.out.print(historia[i]+"\n");
+			} else {
+				System.out.print(historia[i]+" ");
+			}
+			try {
+				Thread.sleep(500);
+			} catch(InterruptedException e) {
+				System.out.println(e);
+			}
+		}
+	}
 	
 	public static void main(String[] args) {
 		//utilizamos a main como um maestro, apenas chamando as funções
@@ -907,6 +956,7 @@ public class jogoCompleto {
 		visualPersonagem = selecionaBoneco(sexoPersonagem);
 		System.out.println("\n"+nomePersonagem +" seu personagem para participar do jogo será: \n\n"+visualPersonagem);
 		carregarInicio(condicaoInicioJogo);
+		//começa a fase 1
 		historiaInicial(nomePersonagem, idadePersonagem, sexoPersonagem);
 		desafio1 = desafio1(nomePersonagem, sexoPersonagem, visualPersonagem);
 		historiaDesafio2(nomePersonagem, sexoPersonagem);
@@ -942,5 +992,9 @@ public class jogoCompleto {
 			//se ele acertou todas as questões, passamos o array original statusDesafiosFase1
 			fimFase1(statusDesafiosFase1);
 		}
+		//termina a fase 1
+		
+		//começa a fase 2
+		historiaInicialFase2(sexoPersonagem, nomePersonagem);
 	}
 }
