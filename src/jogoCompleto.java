@@ -547,7 +547,7 @@ public class jogoCompleto {
 				"analisar o código.", nome, "observou que a senha", "era guardada dentro do sistema", "com uma criptografia", "de hexadecimal,", "no",
 				"sistema havia um comentário", "que exemplificava a", "criptografia:", "\nSENHA = 64202 .", "SENHA GUARDADA NO SISTEMA = FACA .", "Logo",
 				artigo, "percebeu que", "para descobrir a senha do servidor era só", "converter a senha que estava no sistema", "em base hexadecimal", 
-				"para base decimal.", "Essa senha é", "composta por", "5 dígitos."
+				"para base decimal.", "Essa senha é", "composta por", "5 dígitos.", nome, "tem 2 tentativas."
 				
 			};
 		//exibição com delay de 5 segundos
@@ -908,7 +908,7 @@ public class jogoCompleto {
 				"a informações pessoais de 500 milhões de usuários", "e conseguiria vender tudo na", "deep web, recebendo muito dinheiro", "nessa transação.",
 				"A polícia começou a suspeitar", "sobre um ataque maior,", "devido o crescimento", "na dificuldade dos últimos desafios.",
 				"Pensando nisso,", "a polícia sabendo que", "não tinha forças para combater o","grupo, decide procurar", "um hacker bom para combatê-los.",
-				"Após procurar muito", "a polícia achou", nome, "que era cohecido", "como o melhor hacker de São Paulo", "se encaixando", 
+				"Após procurar muito", "a polícia achou", nome, "que era cohecido", "como o melhor hacker de São Paulo,", "se encaixando", 
 				"perfeitamente no que a polícia", "procurava.", "A polícia", "fez a proposta e", nome, "aceitou, agora o melhor hacker fazia",
 				"parte da equipe da polícia."
 			};
