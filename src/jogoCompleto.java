@@ -927,6 +927,131 @@ public class jogoCompleto {
 		}
 	}
 	
+	static void historiaDesafio1Fase2(char sexo, String nome) {
+		//historia do desafio 1 fase 2
+		String artigo = "";
+		//define o a partir do sexo do personagem o artigo da frase
+		if(sexo == 'M') {
+			artigo = "ele";
+		} else {
+			artigo = "ela";
+		}
+		System.out.println("\n");
+		//utiliza o nome e o artigo para escrever a história
+		String historia[] = 
+			{
+				"Chegou o dia em que", "o grupo de hackers", "ia realizar entrada nos servidores", "do Facebook, para o roubo", "das informações.",
+				nome, "estava acompanhando", "as movimentações", "do servidor do Facebook pois,", "ele havia sido contratado", "para realizar este monitoramento.",
+				"O grupo iniciou o ataque", "a estratégia do grupo era simples", "entrar no servidor", "pegar as senhas que estavam", "criptografadas",
+				"e roubar as informações.", "Porém eles não", "contavam que a polícia", "havia se reforçado", "e estava preparada.", nome, "sabia",
+				"qual seria o plano de ação", "do grupo de hackers,", "pois já tinha hackeado um servidor parecido antes.", "Por estar sozinho,", nome,
+				"teve que estudar como se defender,", "ele sabia que o grupo estava preparado fortemente.", "Para se defender",artigo ,"precisava descobrir",
+				"qual era essa criptografia.", nome, "começou a observar","e percebeu que por padrão", "a senha era composta por 8 dígitos numéricos", 
+				"e no servidor esta senha era criptgrafada", "da seguinte maneira:", "SENHA DO USUÁRIO => 12345678 .", "SENHA NO SERVIDOR => ABCDEFGH ."
+			};
+		//exibição com delay de 5 segundos
+		for (int i = 0; i <= historia.length-1; i++) {
+			if(historia[i].contains(".") || historia[i].contains(":")) {
+				System.out.print(historia[i]+"\n");
+			} else {
+				System.out.print(historia[i]+" ");
+			}
+			try {
+				Thread.sleep(500);
+			} catch(InterruptedException e) {
+				System.out.println(e);
+			}
+		}
+	}
+	
+	static String desafio1Fase2() {
+		Scanner sc = new Scanner(System.in);
+		int correta = 0;
+		int cont = 1;
+		String status = "";
+		char resposta = 0;
+		ArrayList<String> alternativas = new ArrayList<String>();
+		//adicionando as alternativas ao arraylist
+		alternativas.add("Número => Caractere correspondente");
+		alternativas.add("Caractere correspondente => Número");
+		alternativas.add("Número => Hexadecimal");
+		alternativas.add("Número => Caractere sortido");
+		
+		 do {
+			System.out.println("\nQual a criptografia?");
+			//troca as alternativas de posição
+			Collections.shuffle(alternativas);
+			//exibe todas as alternatias do arraylist 
+			for(int i = 0; i <= alternativas.size()-1; i++) {
+				switch (i) {
+					case 0:
+						System.out.println("a) "+alternativas.get(i));
+						break;
+					case 1:
+						System.out.println("b) "+alternativas.get(i));
+						break;
+					case 2:
+						System.out.println("c) "+alternativas.get(i));
+						break;
+					case 3:
+						System.out.println("d) "+alternativas.get(i));
+						break;
+				}
+			}
+				resposta = sc.next().toUpperCase().charAt(0);
+			//observa se a resposta inputada pelo usuário está correta
+				switch(resposta) {
+				case 'A':
+					if (alternativas.get(0).equals("Número => Caractere correspondente")) {
+						System.out.println("Criptografia correta!");
+						correta = 1;
+						status = "correta";
+					} else {
+						System.out.println("Criptografa incorreta!");
+						correta = 0;
+						status = "incorreta";
+					}
+					break;
+				case 'B':
+					if (alternativas.get(1).equals("Número => Caractere correspondente")) {
+						System.out.println("Criptografia correta!");
+						correta = 1;
+						status = "correta";
+					} else {
+						System.out.println("Criptografa incorreta!");
+						correta = 0;
+						status = "incorreta";
+					}
+					break;
+				case 'C':
+					if (alternativas.get(2).equals("Número => Caractere correspondente")) {
+						System.out.println("Criptografia correta!");
+						correta = 1;
+						status = "correta";
+					} else {
+						System.out.println("Criptografa incorreta!");
+						correta = 0;
+						status = "incorreta";
+					}
+					break;
+				case 'D':
+					if (alternativas.get(3).equals("Número => Caractere correspondente")) {
+						System.out.println("Criptografia correta!");
+						correta = 1;
+						status = "correta";
+					} else {
+						System.out.println("Criptografa incorreta!");
+						correta = 0;
+						status = "incorreta";
+					}
+					break;
+			}
+				cont++;
+				//este laço tem sua execução interrompida após a realização das duas tentativas ou respota correta
+		} while (correta != 1 && cont <= 2);
+		 return status;
+	}
+	
 	public static void main(String[] args) {
 		//utilizamos a main como um maestro, apenas chamando as funções
 		int idadePersonagem = 0,
@@ -940,7 +1065,8 @@ public class jogoCompleto {
 			   desafio3 = "",
 			   desafio4 = "",
 			   desafio5 = "",
-			   resultadoDesafio1 = "";
+			   resultadoDesafio1 = "",
+			   desafio1Fase2 = "";
 		String informacoesPersonagem[] = new String[3];
 		String statusDesafiosFase1[] = new String[5];
 		String statusRefeito[] = new String[5];
@@ -996,5 +1122,8 @@ public class jogoCompleto {
 		
 		//começa a fase 2
 		historiaInicialFase2(sexoPersonagem, nomePersonagem);
+		historiaDesafio1Fase2(sexoPersonagem, nomePersonagem);
+		desafio1Fase2 = desafio1Fase2();
+		System.out.println(desafio1Fase2);
 	}
 }
