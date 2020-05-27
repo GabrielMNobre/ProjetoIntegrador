@@ -965,7 +965,6 @@ public class jogoCompleto {
 	}
 	
 	static String desafio1Fase2() {
-		Scanner sc = new Scanner(System.in);
 		int correta = 0;
 		int cont = 1;
 		String status = "";
