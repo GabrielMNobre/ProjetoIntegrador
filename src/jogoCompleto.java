@@ -7,7 +7,14 @@ public class jogoCompleto {
 	
 	static Scanner sc = new Scanner(System.in);
 	
-	static void participacaoJogo() {
+	public static String teste() {
+		String teste = "";
+		System.out.println("Rodando em modo teste?(sim/nao)");
+		teste = sc.next();
+		return teste;
+	}
+	
+	public static void participacaoJogo() {
 		//exibe o título e ao clicar enter o jogo inicia
 		String confirmacao;
 		int x = 0;
@@ -34,7 +41,7 @@ public class jogoCompleto {
 		}
 	}
 	
-	static String[] definiPersonagem() {
+	public static String[] definiPersonagem() {
 		//usuário insere as informações do funcionário e armazena em um array
 		String nomePersonagem = "";
 		int idade = 0,
@@ -81,7 +88,7 @@ public class jogoCompleto {
 	}
 	
 
-	static String confereInformacoes(String informacoes[]) {
+	public static String confereInformacoes(String informacoes[]) {
 		//função que observa se todos as informações inseridas pelo funcionário foram colocadas dentro do array
 		String resultado = "";
 		if ((informacoes[0] != "") && (informacoes[1] != "") && (informacoes[2] != "")) {
@@ -92,7 +99,7 @@ public class jogoCompleto {
 		return resultado;
 	}
 	
-	static String selecionaBoneco(char sexo) {
+	public static String selecionaBoneco(char sexo) {
 		//defini a partir da entrada do sexo no array de informações qual será o personagem do usuário
 		String boneco = "";
 		switch (sexo) {
@@ -127,7 +134,7 @@ public class jogoCompleto {
 	}
 	
 	/******************************************************************INÍCIO FASE 1****************************************************************/
-	static void carregarInicio(String status) {
+	public static void carregarInicio(String status) {
 		//método que marca o início da primeira fase
 		switch(status) {
 			case "ok":
@@ -154,7 +161,7 @@ public class jogoCompleto {
 		}
 	}
 	
-	static void historiaInicial(String nome, int idade, char sexo) {
+	public static void historiaInicial(String nome, int idade, char sexo) {
 		//metodo que traz a contextualização e a história inicial do jogo 
 		String genero = "",
 			   artigo = "";
@@ -213,7 +220,7 @@ public class jogoCompleto {
 		
 	}
 	
-	static String desafio1(String nome, char sexo, String personagem) {
+	public static String desafio1(String nome, char sexo, String personagem, String teste) {
 		int resposta = 0,
 			cont = 1;
 		String artigo = "",
@@ -257,7 +264,11 @@ public class jogoCompleto {
 		// pede para o usuáŕio entrar com a resposta da incógnita e exibe
 		do {
 			System.out.print("\nQual dígito que está faltando? ");
-			resposta = sc.nextInt();
+			if(teste == "sim") {
+				resposta = 7;
+			} else {
+				resposta = sc.nextInt();
+			}
 			System.out.println("  _____    _____    _____\n"
 			          +" |     |  |     |  |     |\n"
 			          + " |  2  |  |  3  |  |  "+resposta+"  |\n"
@@ -287,7 +298,7 @@ public class jogoCompleto {
 		
 	}
 	
-	static void historiaDesafio2(String nome, char sexo) {
+	public static void historiaDesafio2(String nome, char sexo) {
 		String artigo = "";
 		//define o a partir do sexo do personagem o artigo da frase
 		if(sexo == 'M') {
@@ -326,7 +337,7 @@ public class jogoCompleto {
 		
 	}
 	
-	static String desafio2() {
+	public static String desafio2(String teste) {
 		int correta = 0;
 		int cont = 1;
 		String status = "";
@@ -364,7 +375,11 @@ public class jogoCompleto {
 						break;
 				}
 			}
-				resposta = sc.next().toUpperCase().charAt(0);
+				if(teste == "sim") {
+					resposta = 'A';
+				} else {
+					resposta = sc.next().toUpperCase().charAt(0);
+				}
 			//observa se a resposta inputada pelo usuário está correta
 				switch(resposta) {
 				case 'A':
@@ -429,7 +444,7 @@ public class jogoCompleto {
 		 return status;
 	}
 	
-	static void historiaDesafio3(char sexo, String nome) {
+	public static void historiaDesafio3(char sexo, String nome) {
 		//historia do desafio 3
 		String artigo = "";
 		//define o a partir do sexo do personagem o artigo da frase
@@ -468,7 +483,7 @@ public class jogoCompleto {
 		}
 	}
 	
-	static String desafio3(String personagem) {
+	public static String desafio3(String personagem, String teste) {
 		String senha = "",
 			   senhaInserida = "",
 			   status = "";
@@ -494,13 +509,29 @@ public class jogoCompleto {
 			          + " |  ?  |  |  ?  |  |  ?  |  |  ?  |\n"
 			          + " |_____|  |_____|  |_____|  |_____|\n");
 			System.out.print("Entre com o primeiro dígito: ");
-			digito1 = sc.nextInt();
+			if(teste == "sim") {
+				digito1 = 1;
+			} else {
+				digito1 = sc.nextInt();
+			}
 			System.out.print("Entre com o segundo dígito: ");
-			digito2 = sc.nextInt();
+			if(teste == "sim") {
+				digito2 = 2;
+			} else {
+				digito2 = sc.nextInt();
+			}
 			System.out.print("Entre com o terceiro dígito: ");
-			digito3 = sc.nextInt();
+			if(teste == "sim") {
+				digito3 = 3;
+			} else {
+				digito3 = sc.nextInt();
+			}
 			System.out.print("Entre com o quarto dígito: ");
-			digito4 = sc.nextInt();
+			if(teste == "sim") {
+				digito4 = 4;
+			} else {
+				digito4 = sc.nextInt();
+			}
 			//observa se os valores inutados pelo usuário são válidos 
 			if ((digito1 >= 0 && digito1 < 10) && (digito2 >= 0 && digito2 < 10) && (digito3 >= 0 && digito3 < 10) && (digito4 >= 0 && digito4 < 10)) {
 				//exibe as entradas dousuário no lugar das incógnitas
@@ -526,7 +557,7 @@ public class jogoCompleto {
 		return status;
 	}
 	
-	static void historiaDesafio4(char sexo, String nome) {
+	public static void historiaDesafio4(char sexo, String nome) {
 		//historia do desafio 4
 		String artigo = "";
 		//define o a partir do sexo do personagem o artigo da frase
@@ -565,7 +596,7 @@ public class jogoCompleto {
 		}
 	}
 	
-	static String desafio4(String personagem) {
+	public static String desafio4(String personagem, String teste) {
 		//estrutura desafio 4
 		Random posicao = new Random();
 		String senhaServidor = "",
@@ -623,15 +654,35 @@ public class jogoCompleto {
 			          + " |  ?  |  |  ?  |  |  ?  |  |  ?  |  |  ?  |\n"
 			          + " |_____|  |_____|  |_____|  |_____|  |_____|\n");
 			System.out.print("Entre com o primeiro dígito: ");
-			digito1 = sc.next();
+			if(teste == "sim") {
+				digito1 = "6";
+			} else {
+				digito1 = sc.next();
+			}
 			System.out.print("Entre com o segundo dígito: ");
-			digito2 = sc.next();
+			if(teste == "sim") {
+				digito2 = "4";
+			} else {
+				digito2 = sc.next();
+			}
 			System.out.print("Entre com o terceiro dígito: ");
-			digito3 = sc.next();
+			if(teste == "sim") {
+				digito3 = "1";
+			} else {
+				digito3 = sc.next();
+			}
 			System.out.print("Entre com o quarto dígito: ");
-			digito4 = sc.next();
+			if(teste == "sim") {
+				digito4 = "8";
+			} else {
+				digito4 = sc.next();
+			}
 			System.out.print("Entre com o quinto dígito: ");
-			digito5 = sc.next();
+			if(teste == "sim") {
+				digito5 = "1";
+			} else {
+				digito5 = sc.next();
+			}
 			
 			senhaInserida = digito1 +""+ digito2 +""+ digito3 +""+ digito4 +""+ digito5; 
 			System.out.println("  _____    _____    _____    _____    _____\n"
@@ -653,7 +704,7 @@ public class jogoCompleto {
 		return status;
 	}
 	
-	static void historiaDesafio5(char sexo, String nome) {
+	public static void historiaDesafio5(char sexo, String nome) {
 		//historia do desafio 5
 		String artigo = "";
 		//define o a partir do sexo do personagem o artigo da frase
@@ -698,7 +749,7 @@ public class jogoCompleto {
 		}
 	}
 	
-	static String desafio5(String personagem) {
+	public static String desafio5(String personagem, String teste) {
 		String senha = "",
 			   status = "",
 			   senhaInserida = "";
@@ -725,13 +776,29 @@ public class jogoCompleto {
 			          + " |  ?  |  |  ?  |  |  ?  |  |  ?  |\n"
 			          + " |_____|  |_____|  |_____|  |_____|\n");
 			System.out.print("Entre com o primeiro dígito: ");
-			digito1 = sc.nextInt();
+			if(teste == "sim") {
+				digito1 = 1;
+			} else {
+				digito1 = sc.nextInt();
+			}
 			System.out.print("Entre com o segundo dígito: ");
-			digito2 = sc.nextInt();
+			if(teste == "sim") {
+				digito2 = 3;
+			} else {
+				digito2 = sc.nextInt();
+			}
 			System.out.print("Entre com o terceiro dígito: ");
-			digito3 = sc.nextInt();
+			if(teste == "sim") {
+				digito3 = 5;
+			} else {
+				digito3 = sc.nextInt();
+			}
 			System.out.print("Entre com o quarto dígito: ");
-			digito4 = sc.nextInt();
+			if(teste == "sim") {
+				digito4 = 7;
+			} else {
+				digito4 = sc.nextInt();
+			}
 			
 			//transforma a senha em uma String
 			senhaInserida = String.valueOf(digito1) + String.valueOf(digito2) + String.valueOf(digito3) + String.valueOf(digito4);
@@ -756,7 +823,7 @@ public class jogoCompleto {
 	}
 	
 	//detalha com o usuári se saiu em cada desafio(acerto ou erro)
-	static String feedbackFase1(String array[]) {
+	public static String feedbackFase1(String array[]) {
 		String retorno = "";
 		//percorre o array e verifica cada posicao
 		for(int i = 0; i <= array.length-1; i++) {
@@ -805,7 +872,7 @@ public class jogoCompleto {
 	}
 	
 	//se na função feedbackFase1 o usuário tiver algum erro, essa função é exibida para ele tentar refazer o desafio que foi errado
-	static String[] necessidadeRefazer(String dados[], String nome, char sexo, String visual) {
+	public static String[] necessidadeRefazer(String dados[], String nome, char sexo, String visual, String teste) {
 		String retorno[] = new String[5];
 		String retDesafio = "";
 		int x = 0;
@@ -826,15 +893,15 @@ public class jogoCompleto {
 					//exibe o desafio que foi errado de acordo com a posição do array
 					System.out.println("Você não acertou o desafio "+(i+1)+".\nFaça novamente!");
 					if(i == 0) {
-						retDesafio = desafio1(nome, sexo, visual);
+						retDesafio = desafio1(nome, sexo, visual,teste);
 					} else if(i == 1) {
-						retDesafio = desafio2();
+						retDesafio = desafio2(teste);
 					} else if(i == 2) {
-						retDesafio = desafio3(visual);
+						retDesafio = desafio3(visual, teste);
 					} else if(i == 3) {
-						retDesafio = desafio4(visual);
+						retDesafio = desafio4(visual, teste);
 					} else {
-						retDesafio = desafio5(visual);
+						retDesafio = desafio5(visual, teste);
 					}
 					retorno[i] = retDesafio;
 				} else {
@@ -846,7 +913,7 @@ public class jogoCompleto {
 	}
 	
 	//função que demarca o fim da fase 1
-	static void fimFase1(String dados[]) {
+	public static void fimFase1(String dados[]) {
 		int x = 0;
 		//confere se o array passado contém alguma resposta incorreta
 		for(int i = 0; i <= dados.length-1; i++) {
@@ -882,7 +949,7 @@ public class jogoCompleto {
 	
 	/******************************************************************INÍCIO FASE 2*************************************************************/
 	
-	static void historiaInicialFase2(char sexo, String nome) {
+	public static void historiaInicialFase2(char sexo, String nome) {
 		//historia inicial da segunda fase
 		String artigo = "";
 		//define o a partir do sexo do personagem o artigo da frase
@@ -927,7 +994,7 @@ public class jogoCompleto {
 		}
 	}
 	
-	static void historiaDesafio1Fase2(char sexo, String nome) {
+	public static void historiaDesafio1Fase2(char sexo, String nome) {
 		//historia do desafio 1 fase 2
 		String artigo = "";
 		//define o a partir do sexo do personagem o artigo da frase
@@ -964,7 +1031,7 @@ public class jogoCompleto {
 		}
 	}
 	
-	static String desafio1Fase2() {
+	public static String desafio1Fase2(String teste) {
 		int correta = 0;
 		int cont = 1;
 		String status = "";
@@ -1065,10 +1132,14 @@ public class jogoCompleto {
 			   desafio4 = "",
 			   desafio5 = "",
 			   resultadoDesafio1 = "",
-			   desafio1Fase2 = "";
+			   desafio1Fase2 = "",
+			   modoTeste = "";
 		String informacoesPersonagem[] = new String[3];
 		String statusDesafiosFase1[] = new String[5];
 		String statusRefeito[] = new String[5];
+		
+		modoTeste = teste();
+		System.out.println(modoTeste);
 		
 		participacaoJogo();
 		informacoesPersonagem = definiPersonagem();
@@ -1083,15 +1154,15 @@ public class jogoCompleto {
 		carregarInicio(condicaoInicioJogo);
 		//começa a fase 1
 		historiaInicial(nomePersonagem, idadePersonagem, sexoPersonagem);
-		desafio1 = desafio1(nomePersonagem, sexoPersonagem, visualPersonagem);
+		desafio1 = desafio1(nomePersonagem, sexoPersonagem, visualPersonagem, modoTeste);
 		historiaDesafio2(nomePersonagem, sexoPersonagem);
-		desafio2 = desafio2();
+		desafio2 = desafio2(modoTeste);
 		historiaDesafio3(sexoPersonagem, nomePersonagem);
-		desafio3 = desafio3(visualPersonagem);
+		desafio3 = desafio3(visualPersonagem, modoTeste);
 		historiaDesafio4(sexoPersonagem, nomePersonagem);
-		desafio4 = desafio4(visualPersonagem);
+		desafio4 = desafio4(visualPersonagem, modoTeste);
 		historiaDesafio5(sexoPersonagem, nomePersonagem);
-		desafio5 = desafio5(visualPersonagem);
+		desafio5 = desafio5(visualPersonagem, modoTeste);
 		
 		//armazena dentro do array se o usuário acertou ou errou os desafios, esse array será utilizado para fazer o feedback da primeira fase
 		statusDesafiosFase1[0] = desafio1;
@@ -1102,7 +1173,7 @@ public class jogoCompleto {
 		
 		resultadoDesafio1 = feedbackFase1(statusDesafiosFase1);
 		System.out.println(resultadoDesafio1);
-		statusRefeito = necessidadeRefazer(statusDesafiosFase1, nomePersonagem, sexoPersonagem, visualPersonagem);
+		statusRefeito = necessidadeRefazer(statusDesafiosFase1, nomePersonagem, sexoPersonagem, visualPersonagem, modoTeste);
 		
 		for(int i = 0; i <= statusDesafiosFase1.length-1; i++) {
 			if(statusDesafiosFase1[i].equals("incorreta")) {
@@ -1122,7 +1193,7 @@ public class jogoCompleto {
 		//começa a fase 2
 		historiaInicialFase2(sexoPersonagem, nomePersonagem);
 		historiaDesafio1Fase2(sexoPersonagem, nomePersonagem);
-		desafio1Fase2 = desafio1Fase2();
+		desafio1Fase2 = desafio1Fase2(modoTeste);
 		System.out.println(desafio1Fase2);
 	}
 }
