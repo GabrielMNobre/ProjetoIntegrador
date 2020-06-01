@@ -908,7 +908,7 @@ public class jogoCompleto {
 				"todas por água abaixo.", "E a cada embate com a polícia,","que eles venciam,","o grupo de hackers", "se tornava cada vez mais forte.",
 				"Com a força do grupo aumentando,", "e a força da polícia para", "combatê-los cada", "vez mais fraca,","o grupo se prepara",
 				"para o ataque de maior", "intensidade:","ATACAR TODA A BASE DE DADOS", "DO FACEBOOK.", "Uma vez dentro da base", "o grupo teria acesso",
-				"a informações pessoais de 500 milhões de usuários", "e conseguiria vender tudo na", "deep web, recebendo muito dinheiro", "nessa transação.",
+				"a informações pessoais de 500 milhões de usuários", "e conseguiria vender tudo na", "deep web, recebendo muito dinheiro", "com a venda.",
 				"A polícia começou a suspeitar", "sobre um ataque maior,", "devido o crescimento", "na dificuldade dos últimos desafios.",
 				"Pensando nisso,", "a polícia sabendo que", "não tinha forças para combater o","grupo, decide procurar", "um hacker bom para combatê-los.",
 				"Após procurar muito", "a polícia achou", nome, "que era cohecido", "como o melhor hacker de São Paulo,", "se encaixando", 
@@ -923,7 +923,7 @@ public class jogoCompleto {
 				System.out.print(historia[i]+" ");
 			}
 			try {
-				Thread.sleep(500);
+				Thread.sleep(100);
 			} catch(InterruptedException e) {
 				System.out.println(e);
 			}
@@ -950,7 +950,8 @@ public class jogoCompleto {
 				"qual seria o plano de ação", "do grupo de hackers,", "pois já tinha hackeado um servidor parecido antes.", "Por estar sozinho,", nome,
 				"teve que estudar como se defender,", "ele sabia que o grupo estava preparado fortemente.", "Para se defender",artigo ,"precisava descobrir",
 				"qual era essa criptografia.", nome, "começou a observar","e percebeu que por padrão", "a senha era composta por 8 dígitos numéricos", 
-				"e no servidor esta senha era criptgrafada", "da seguinte maneira:", "SENHA DO USUÁRIO => 12345678 .", "SENHA NO SERVIDOR => ABCDEFGH ."
+				"e no servidor esta senha era criptgrafada", "da seguinte maneira:", "SENHA DO USUÁRIO => 12345678 .", "SENHA NO SERVIDOR => ABCDEFGH .",
+				nome, "tem 2 tentativas para acertar."
 			};
 		//exibição com delay de 5 segundos
 		for (int i = 0; i <= historia.length-1; i++) {
@@ -960,7 +961,7 @@ public class jogoCompleto {
 				System.out.print(historia[i]+" ");
 			}
 			try {
-				Thread.sleep(500);
+				Thread.sleep(100);
 			} catch(InterruptedException e) {
 				System.out.println(e);
 			}
@@ -1058,7 +1059,8 @@ public class jogoCompleto {
 		//utilizamos a main como um maestro, apenas chamando as funções
 		int idadePersonagem = 0,
 			correta = 0,
-			tentativaFase1 = 1;
+			tentativaFase1 = 1,
+			tentativaDesafio12 = 1;
 		char sexoPersonagem;
 		String nomePersonagem = "",
 			   condicaoInicioJogo = "",
@@ -1071,7 +1073,8 @@ public class jogoCompleto {
 			   resultadoDesafio1 = "",
 			   desafio1Fase2 = "",
 			   fimfase = "",
-			   recomeco = "";
+			   recomeco = "",
+			   recomecoD12 = "";
 		String informacoesPersonagem[] = new String[3];
 		String statusDesafiosFase1[] = new String[5];
 		String statusRefeito[] = new String[5];
@@ -1145,9 +1148,32 @@ public class jogoCompleto {
 		//termina a fase 1
 		
 		//começa a fase 2
-		historiaInicialFase2(sexoPersonagem, nomePersonagem);
-		historiaDesafio1Fase2(sexoPersonagem, nomePersonagem);
-		desafio1Fase2 = desafio1Fase2();
-		System.out.println(desafio1Fase2);
+		do {
+			if(tentativaDesafio12 > 1) {
+				System.out.println("Você não acetou o desafio 1 da fase 2!");
+				System.out.println("O jogo vai ser reiniciado na fase 2!");
+				System.out.println("\nDESEJA RECOMEÇAR? (S/N)");
+				recomecoD12 = sc.next().toLowerCase();
+				if(recomecoD12.contains("s")) {
+					System.out.println("\nREINICIANDO FASE...");
+				} else {
+					System.exit(0);
+				}
+			}
+			historiaInicialFase2(sexoPersonagem, nomePersonagem);
+			historiaDesafio1Fase2(sexoPersonagem, nomePersonagem);
+			desafio1Fase2 = desafio1Fase2();
+			if(desafio1Fase2 != "correta") {
+				System.out.println("\n");
+				System.out.println("\t\t\t\t ██████╗  █████╗ ███╗   ███╗███████╗     ██████╗ ██╗   ██╗███████╗██████╗ \n" + 
+								   "\t\t\t\t██╔════╝ ██╔══██╗████╗ ████║██╔════╝    ██╔═══██╗██║   ██║██╔════╝██╔══██╗\n" + 
+								   "\t\t\t\t██║  ███╗███████║██╔████╔██║█████╗      ██║   ██║██║   ██║█████╗  ██████╔╝\n" + 
+								   "\t\t\t\t██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗\n" + 
+								   "\t\t\t\t╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║\n" + 
+								   "\t\t\t\t ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝");
+			}
+			tentativaDesafio12++;
+		} while(desafio1Fase2 != "correta");
+		System.out.println("Saiu");
 	}
 }
