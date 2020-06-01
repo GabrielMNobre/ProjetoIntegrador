@@ -7,13 +7,6 @@ public class jogoCompleto {
 	
 	static Scanner sc = new Scanner(System.in);
 	
-	public static String teste() {
-		String teste = "";
-		System.out.println("Rodando em modo teste?(sim/nao)");
-		teste = sc.next();
-		return teste;
-	}
-	
 	public static void participacaoJogo() {
 		//exibe o título e ao clicar enter o jogo inicia
 		String confirmacao;
@@ -220,7 +213,7 @@ public class jogoCompleto {
 		
 	}
 	
-	public static String desafio1(String nome, char sexo, String personagem, String teste) {
+	public static String desafio1(String nome, char sexo, String personagem) {
 		int resposta = 0,
 			cont = 1;
 		String artigo = "",
@@ -264,11 +257,8 @@ public class jogoCompleto {
 		// pede para o usuáŕio entrar com a resposta da incógnita e exibe
 		do {
 			System.out.print("\nQual dígito que está faltando? ");
-			if(teste == "sim") {
-				resposta = 7;
-			} else {
-				resposta = sc.nextInt();
-			}
+			resposta = sc.nextInt();
+			
 			System.out.println("  _____    _____    _____\n"
 			          +" |     |  |     |  |     |\n"
 			          + " |  2  |  |  3  |  |  "+resposta+"  |\n"
@@ -337,7 +327,7 @@ public class jogoCompleto {
 		
 	}
 	
-	public static String desafio2(String teste) {
+	public static String desafio2() {
 		int correta = 0;
 		int cont = 1;
 		String status = "";
@@ -375,11 +365,7 @@ public class jogoCompleto {
 						break;
 				}
 			}
-				if(teste == "sim") {
-					resposta = 'A';
-				} else {
-					resposta = sc.next().toUpperCase().charAt(0);
-				}
+				resposta = sc.next().toUpperCase().charAt(0);
 			//observa se a resposta inputada pelo usuário está correta
 				switch(resposta) {
 				case 'A':
@@ -483,7 +469,7 @@ public class jogoCompleto {
 		}
 	}
 	
-	public static String desafio3(String personagem, String teste) {
+	public static String desafio3(String personagem) {
 		String senha = "",
 			   senhaInserida = "",
 			   status = "";
@@ -509,29 +495,13 @@ public class jogoCompleto {
 			          + " |  ?  |  |  ?  |  |  ?  |  |  ?  |\n"
 			          + " |_____|  |_____|  |_____|  |_____|\n");
 			System.out.print("Entre com o primeiro dígito: ");
-			if(teste == "sim") {
-				digito1 = 1;
-			} else {
 				digito1 = sc.nextInt();
-			}
 			System.out.print("Entre com o segundo dígito: ");
-			if(teste == "sim") {
-				digito2 = 2;
-			} else {
 				digito2 = sc.nextInt();
-			}
 			System.out.print("Entre com o terceiro dígito: ");
-			if(teste == "sim") {
-				digito3 = 3;
-			} else {
 				digito3 = sc.nextInt();
-			}
 			System.out.print("Entre com o quarto dígito: ");
-			if(teste == "sim") {
-				digito4 = 4;
-			} else {
 				digito4 = sc.nextInt();
-			}
 			//observa se os valores inutados pelo usuário são válidos 
 			if ((digito1 >= 0 && digito1 < 10) && (digito2 >= 0 && digito2 < 10) && (digito3 >= 0 && digito3 < 10) && (digito4 >= 0 && digito4 < 10)) {
 				//exibe as entradas dousuário no lugar das incógnitas
@@ -596,7 +566,7 @@ public class jogoCompleto {
 		}
 	}
 	
-	public static String desafio4(String personagem, String teste) {
+	public static String desafio4(String personagem) {
 		//estrutura desafio 4
 		Random posicao = new Random();
 		String senhaServidor = "",
@@ -654,35 +624,15 @@ public class jogoCompleto {
 			          + " |  ?  |  |  ?  |  |  ?  |  |  ?  |  |  ?  |\n"
 			          + " |_____|  |_____|  |_____|  |_____|  |_____|\n");
 			System.out.print("Entre com o primeiro dígito: ");
-			if(teste == "sim") {
-				digito1 = "6";
-			} else {
 				digito1 = sc.next();
-			}
 			System.out.print("Entre com o segundo dígito: ");
-			if(teste == "sim") {
-				digito2 = "4";
-			} else {
 				digito2 = sc.next();
-			}
 			System.out.print("Entre com o terceiro dígito: ");
-			if(teste == "sim") {
-				digito3 = "1";
-			} else {
 				digito3 = sc.next();
-			}
 			System.out.print("Entre com o quarto dígito: ");
-			if(teste == "sim") {
-				digito4 = "8";
-			} else {
 				digito4 = sc.next();
-			}
 			System.out.print("Entre com o quinto dígito: ");
-			if(teste == "sim") {
-				digito5 = "1";
-			} else {
 				digito5 = sc.next();
-			}
 			
 			senhaInserida = digito1 +""+ digito2 +""+ digito3 +""+ digito4 +""+ digito5; 
 			System.out.println("  _____    _____    _____    _____    _____\n"
@@ -749,7 +699,7 @@ public class jogoCompleto {
 		}
 	}
 	
-	public static String desafio5(String personagem, String teste) {
+	public static String desafio5(String personagem) {
 		String senha = "",
 			   status = "",
 			   senhaInserida = "";
@@ -776,29 +726,13 @@ public class jogoCompleto {
 			          + " |  ?  |  |  ?  |  |  ?  |  |  ?  |\n"
 			          + " |_____|  |_____|  |_____|  |_____|\n");
 			System.out.print("Entre com o primeiro dígito: ");
-			if(teste == "sim") {
-				digito1 = 1;
-			} else {
 				digito1 = sc.nextInt();
-			}
 			System.out.print("Entre com o segundo dígito: ");
-			if(teste == "sim") {
-				digito2 = 3;
-			} else {
 				digito2 = sc.nextInt();
-			}
 			System.out.print("Entre com o terceiro dígito: ");
-			if(teste == "sim") {
-				digito3 = 5;
-			} else {
 				digito3 = sc.nextInt();
-			}
 			System.out.print("Entre com o quarto dígito: ");
-			if(teste == "sim") {
-				digito4 = 7;
-			} else {
 				digito4 = sc.nextInt();
-			}
 			
 			//transforma a senha em uma String
 			senhaInserida = String.valueOf(digito1) + String.valueOf(digito2) + String.valueOf(digito3) + String.valueOf(digito4);
@@ -872,7 +806,7 @@ public class jogoCompleto {
 	}
 	
 	//se na função feedbackFase1 o usuário tiver algum erro, essa função é exibida para ele tentar refazer o desafio que foi errado
-	public static String[] necessidadeRefazer(String dados[], String nome, char sexo, String visual, String teste) {
+	public static String[] necessidadeRefazer(String dados[], String nome, char sexo, String visual) {
 		String retorno[] = new String[5];
 		String retDesafio = "";
 		int x = 0;
@@ -893,15 +827,15 @@ public class jogoCompleto {
 					//exibe o desafio que foi errado de acordo com a posição do array
 					System.out.println("Você não acertou o desafio "+(i+1)+".\nFaça novamente!");
 					if(i == 0) {
-						retDesafio = desafio1(nome, sexo, visual,teste);
+						retDesafio = desafio1(nome, sexo, visual);
 					} else if(i == 1) {
-						retDesafio = desafio2(teste);
+						retDesafio = desafio2();
 					} else if(i == 2) {
-						retDesafio = desafio3(visual, teste);
+						retDesafio = desafio3(visual);
 					} else if(i == 3) {
-						retDesafio = desafio4(visual, teste);
+						retDesafio = desafio4(visual);
 					} else {
-						retDesafio = desafio5(visual, teste);
+						retDesafio = desafio5(visual);
 					}
 					retorno[i] = retDesafio;
 				} else {
@@ -1031,7 +965,7 @@ public class jogoCompleto {
 		}
 	}
 	
-	public static String desafio1Fase2(String teste) {
+	public static String desafio1Fase2() {
 		int correta = 0;
 		int cont = 1;
 		String status = "";
@@ -1138,9 +1072,6 @@ public class jogoCompleto {
 		String statusDesafiosFase1[] = new String[5];
 		String statusRefeito[] = new String[5];
 		
-		modoTeste = teste();
-		System.out.println(modoTeste);
-		
 		participacaoJogo();
 		informacoesPersonagem = definiPersonagem();
 		
@@ -1154,15 +1085,15 @@ public class jogoCompleto {
 		carregarInicio(condicaoInicioJogo);
 		//começa a fase 1
 		historiaInicial(nomePersonagem, idadePersonagem, sexoPersonagem);
-		desafio1 = desafio1(nomePersonagem, sexoPersonagem, visualPersonagem, modoTeste);
+		desafio1 = desafio1(nomePersonagem, sexoPersonagem, visualPersonagem);
 		historiaDesafio2(nomePersonagem, sexoPersonagem);
-		desafio2 = desafio2(modoTeste);
+		desafio2 = desafio2();
 		historiaDesafio3(sexoPersonagem, nomePersonagem);
-		desafio3 = desafio3(visualPersonagem, modoTeste);
+		desafio3 = desafio3(visualPersonagem);
 		historiaDesafio4(sexoPersonagem, nomePersonagem);
-		desafio4 = desafio4(visualPersonagem, modoTeste);
+		desafio4 = desafio4(visualPersonagem);
 		historiaDesafio5(sexoPersonagem, nomePersonagem);
-		desafio5 = desafio5(visualPersonagem, modoTeste);
+		desafio5 = desafio5(visualPersonagem);
 		
 		//armazena dentro do array se o usuário acertou ou errou os desafios, esse array será utilizado para fazer o feedback da primeira fase
 		statusDesafiosFase1[0] = desafio1;
@@ -1173,7 +1104,7 @@ public class jogoCompleto {
 		
 		resultadoDesafio1 = feedbackFase1(statusDesafiosFase1);
 		System.out.println(resultadoDesafio1);
-		statusRefeito = necessidadeRefazer(statusDesafiosFase1, nomePersonagem, sexoPersonagem, visualPersonagem, modoTeste);
+		statusRefeito = necessidadeRefazer(statusDesafiosFase1, nomePersonagem, sexoPersonagem, visualPersonagem);
 		
 		for(int i = 0; i <= statusDesafiosFase1.length-1; i++) {
 			if(statusDesafiosFase1[i].equals("incorreta")) {
@@ -1193,7 +1124,7 @@ public class jogoCompleto {
 		//começa a fase 2
 		historiaInicialFase2(sexoPersonagem, nomePersonagem);
 		historiaDesafio1Fase2(sexoPersonagem, nomePersonagem);
-		desafio1Fase2 = desafio1Fase2(modoTeste);
+		desafio1Fase2 = desafio1Fase2();
 		System.out.println(desafio1Fase2);
 	}
 }
