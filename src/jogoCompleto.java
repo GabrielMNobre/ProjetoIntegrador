@@ -847,8 +847,9 @@ public class jogoCompleto {
 	}
 	
 	//função que demarca o fim da fase 1
-	public static void fimFase1(String dados[]) {
+	public static String fimFase1(String dados[]) {
 		int x = 0;
+		String retorno = "";
 		//confere se o array passado contém alguma resposta incorreta
 		for(int i = 0; i <= dados.length-1; i++) {
 			if(dados[i].equals("incorreta")) {
@@ -867,6 +868,7 @@ public class jogoCompleto {
 							   "╚═╝     ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝    ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝    ╚═════╝ ╚══════╝    ╚══════╝╚═╝    ");
 			//demarca o início da fase 2
 			System.out.println("\t\t\t\t\t\t\t\tFASE 2");
+			retorno = "ok";
 		} else {
 			//se tiver questão incorreta no array, determina o fim do jogo
 			System.out.println("\t\t\t\t ██████╗  █████╗ ███╗   ███╗███████╗     ██████╗ ██╗   ██╗███████╗██████╗ \n" + 
@@ -875,9 +877,9 @@ public class jogoCompleto {
 							   "\t\t\t\t██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗\n" + 
 							   "\t\t\t\t╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║\n" + 
 							   "\t\t\t\t ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝");
-			//fecha a aplicação sendo necessário o reinicio do jogo
-			System.exit(0);
+			retorno = "back";
 		}
+		return retorno;
 	}
 	/******************************************************************FIM FASE 1****************************************************************/
 	
@@ -902,7 +904,7 @@ public class jogoCompleto {
 				"não fazia coisas", "que não faziam mal a ninguém", "como", nome, "fazia.", "O grupo realizava", "ações que eram",
 				"prejudiciais a comunidade", "como roubo de informações", "e até mesmo em casos extremos,", "roubo de bitcoins,",
 				"moeda valiosa no mundo dos hackers.", "Esses delitos começaram a", "ser mais frequentes", "e a polícia", "precisou intervir.",
-				"A equipe de defesa cibernética", "da polícia, foi chamada", " e tentou de diversas maneiras", "impedir este grupo,", "porém as tetativas foram",
+				"A equipe de defesa cibernética", "da polícia, foi chamada", " e tentou de diversas maneiras", "impedir este grupo,", "porém as tentativas foram",
 				"todas por água abaixo.", "E a cada embate com a polícia,","que eles venciam,","o grupo de hackers", "se tornava cada vez mais forte.",
 				"Com a força do grupo aumentando,", "e a força da polícia para", "combatê-los cada", "vez mais fraca,","o grupo se prepara",
 				"para o ataque de maior", "intensidade:","ATACAR TODA A BASE DE DADOS", "DO FACEBOOK.", "Uma vez dentro da base", "o grupo teria acesso",
@@ -1055,7 +1057,8 @@ public class jogoCompleto {
 	public static void main(String[] args) {
 		//utilizamos a main como um maestro, apenas chamando as funções
 		int idadePersonagem = 0,
-			correta = 0;
+			correta = 0,
+			tentativaFase1 = 1;
 		char sexoPersonagem;
 		String nomePersonagem = "",
 			   condicaoInicioJogo = "",
@@ -1067,7 +1070,8 @@ public class jogoCompleto {
 			   desafio5 = "",
 			   resultadoDesafio1 = "",
 			   desafio1Fase2 = "",
-			   modoTeste = "";
+			   fimfase = "",
+			   recomeco = "";
 		String informacoesPersonagem[] = new String[3];
 		String statusDesafiosFase1[] = new String[5];
 		String statusRefeito[] = new String[5];
@@ -1084,41 +1088,60 @@ public class jogoCompleto {
 		System.out.println("\n"+nomePersonagem +" seu personagem para participar do jogo será: \n\n"+visualPersonagem);
 		carregarInicio(condicaoInicioJogo);
 		//começa a fase 1
-		historiaInicial(nomePersonagem, idadePersonagem, sexoPersonagem);
-		desafio1 = desafio1(nomePersonagem, sexoPersonagem, visualPersonagem);
-		historiaDesafio2(nomePersonagem, sexoPersonagem);
-		desafio2 = desafio2();
-		historiaDesafio3(sexoPersonagem, nomePersonagem);
-		desafio3 = desafio3(visualPersonagem);
-		historiaDesafio4(sexoPersonagem, nomePersonagem);
-		desafio4 = desafio4(visualPersonagem);
-		historiaDesafio5(sexoPersonagem, nomePersonagem);
-		desafio5 = desafio5(visualPersonagem);
 		
-		//armazena dentro do array se o usuário acertou ou errou os desafios, esse array será utilizado para fazer o feedback da primeira fase
-		statusDesafiosFase1[0] = desafio1;
-		statusDesafiosFase1[1] = desafio2;
-		statusDesafiosFase1[2] = desafio3;
-		statusDesafiosFase1[3] = desafio4;
-		statusDesafiosFase1[4] = desafio5;
-		
-		resultadoDesafio1 = feedbackFase1(statusDesafiosFase1);
-		System.out.println(resultadoDesafio1);
-		statusRefeito = necessidadeRefazer(statusDesafiosFase1, nomePersonagem, sexoPersonagem, visualPersonagem);
-		
-		for(int i = 0; i <= statusDesafiosFase1.length-1; i++) {
-			if(statusDesafiosFase1[i].equals("incorreta")) {
-				//confere se o usuário acertou ou não todos os desafios
-				correta++;
+		do {
+			if(tentativaFase1 > 1) {
+				System.out.println("\n\nDESEJA RECOMEÇAR O JOGO? (S/N)");
+				recomeco = sc.next().toLowerCase();
+				if(recomeco.contains("s")) {
+					System.out.println("\nO JOGO VAI RECOMEÇAR...");
+					correta = 0;
+					statusDesafiosFase1[0] = "";
+					statusDesafiosFase1[1] = "";
+					statusDesafiosFase1[2] = "";
+					statusDesafiosFase1[3] = "";
+					statusDesafiosFase1[4] = "";
+				} else {
+					System.exit(0);
+				}
 			}
-		}
-		if(correta > 0) {
-			//se ele não acertou todas, passamos o array que retornou da função necessidadeRefazer
-			fimFase1(statusRefeito);
-		} else {
-			//se ele acertou todas as questões, passamos o array original statusDesafiosFase1
-			fimFase1(statusDesafiosFase1);
-		}
+			historiaInicial(nomePersonagem, idadePersonagem, sexoPersonagem);
+			desafio1 = desafio1(nomePersonagem, sexoPersonagem, visualPersonagem);
+			historiaDesafio2(nomePersonagem, sexoPersonagem);
+			desafio2 = desafio2();
+			historiaDesafio3(sexoPersonagem, nomePersonagem);
+			desafio3 = desafio3(visualPersonagem);
+			historiaDesafio4(sexoPersonagem, nomePersonagem);
+			desafio4 = desafio4(visualPersonagem);
+			historiaDesafio5(sexoPersonagem, nomePersonagem);
+			desafio5 = desafio5(visualPersonagem);
+			
+			//armazena dentro do array se o usuário acertou ou errou os desafios, esse array será utilizado para fazer o feedback da primeira fase
+			statusDesafiosFase1[0] = desafio1;
+			statusDesafiosFase1[1] = desafio2;
+			statusDesafiosFase1[2] = desafio3;
+			statusDesafiosFase1[3] = desafio4;
+			statusDesafiosFase1[4] = desafio5;
+			
+			resultadoDesafio1 = feedbackFase1(statusDesafiosFase1);
+			System.out.println(resultadoDesafio1);
+			statusRefeito = necessidadeRefazer(statusDesafiosFase1, nomePersonagem, sexoPersonagem, visualPersonagem);
+			
+			for(int i = 0; i <= statusDesafiosFase1.length-1; i++) {
+				if(statusDesafiosFase1[i].equals("incorreta")) {
+					//confere se o usuário acertou ou não todos os desafios
+					correta++;
+				}
+			}
+			if(correta > 0) {
+				//se ele não acertou todas, passamos o array que retornou da função necessidadeRefazer
+				fimfase = fimFase1(statusRefeito);
+			} else {
+				//se ele acertou todas as questões, passamos o array original statusDesafiosFase1
+				fimfase = fimFase1(statusDesafiosFase1);
+			}
+			tentativaFase1++;
+		} while(fimfase != "ok");
 		//termina a fase 1
 		
 		//começa a fase 2
