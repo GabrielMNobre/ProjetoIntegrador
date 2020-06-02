@@ -867,7 +867,7 @@ public class jogoCompleto {
 							   "██║ ╚═╝ ██║███████╗███████╗██║  ██║╚██████╔╝██║  ██║    ██║  ██║██║  ██║╚██████╗██║  ██╗███████╗██║  ██║    ██████╔╝███████╗    ███████║██║     \n" + 
 							   "╚═╝     ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝    ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝    ╚═════╝ ╚══════╝    ╚══════╝╚═╝    ");
 			//demarca o início da fase 2
-			System.out.println("\t\t\t\t\t\t\t\tFASE 2");
+			System.out.println("\t\t\t\t\t\t\t\tFASE II");
 			retorno = "ok";
 		} else {
 			//se tiver questão incorreta no array, determina o fim do jogo
@@ -1055,12 +1055,93 @@ public class jogoCompleto {
 		 return status;
 	}
 	
+	static void historiaDesafio2Fase2(char sexo, String nome) {
+		//historia do desafio 4
+		String artigo = "";
+		//define o a partir do sexo do personagem o artigo da frase
+		if(sexo == 'M') {
+			artigo = "ele";
+		} else {
+			artigo = "ela";
+		}
+		System.out.println("\n");
+		//utiliza o nome e o artigo para escrever a história
+		String historia[] = 
+			{
+				"Após descobrir", "como funcionava o", "sistema de criptografia do servidor,", nome, "precisava mudar esta criptografia.",
+				"Por que", artigo, "tinha que fazer isso?", "Por já ter hackeado um servidor similar", artigo, "sabia que o grupo que estava",
+				"enfrentando não estava", "preparado para outro", "modelo de criptografia.", "Com isso para obter êxito", "na disputa,",
+				"mudar era sua última opção.", nome, "resolveu inverter a criptografia, ficando desta maneira:", 
+				"Critografia Invertida => SENHA DO USUÁRIO = ABCDEFGH |", "SENHA DO SERVIDOR = 12345678 ."
+			};
+		//exibição com delay de 5 segundos
+		for (int i = 0; i <= historia.length-1; i++) {
+			if(historia[i].contains(".") || historia[i].contains(":") || historia[i].contains("?")) {
+				System.out.print(historia[i]+"\n");
+			} else {
+				System.out.print(historia[i]+" ");
+			}
+			try {
+				Thread.sleep(100);
+			} catch(InterruptedException e) {
+				System.out.println(e);
+			}
+		}
+	}
+	
+	static String desafio2Fase2(String nome) {
+		Random sort = new Random();
+		String status = "";
+		String senhaCripto1[][] = new String[3][2];
+		int posicao = 0,
+			resposta = 0,
+			x = 0;
+		
+		//adiciona em uma matriz a senha e a senha criptografada
+		senhaCripto1[0][0] = "ABCDFHG";
+		senhaCripto1[0][1] = "1234687";
+		senhaCripto1[1][0] = "BCAFDGH";
+		senhaCripto1[1][1] = "2316478";
+		senhaCripto1[2][0] = "BAHCFDG";
+		senhaCripto1[2][1] = "2183647";
+		
+		//sorteia uma posicao da matriza
+		posicao = sort.nextInt(3);
+		
+			System.out.println("\n");
+			System.out.println("Ele implantou as mudanças no servidor e agora só restava fazer um teste para ver se tudo tinha sido realizado de forma correta.");
+			System.out.println("O teste consistia em pegar o seu próprio usuário e olhar a senha que estava no servidor, ele teria que fazer as conversões"
+								+ "\nmanualmente para ter certeza que a criptografia havia sido realizada com sucesso.");
+			System.out.println("\n\nA senha do usuário é: "+senhaCripto1[posicao][0]+" a senha no servidor é: "+senhaCripto1[posicao][1]);
+			//confere se o usuário colocou uma resposta válida
+			do {
+				
+				System.out.println("A criptografa foi realizada de maneira correta? \n1 - Sim \n2 - Não");
+				resposta = sc.nextInt();
+				if(resposta == 1 || resposta == 2) {
+					x = 1;
+				} else {
+					System.out.println("Valor inserido não existe!");
+				}
+				//laço só sai quando a opção inserida é válida, 1 ou 2 
+			}while(x != 1);
+			//confere se a resposta inserida pelo usuário é correta ou não
+			if(resposta == 1) {
+				status = "correta";
+			} else {
+				status = "incorreta";
+			}
+			
+		 return status;
+	}
+	
 	public static void main(String[] args) {
 		//utilizamos a main como um maestro, apenas chamando as funções
 		int idadePersonagem = 0,
 			correta = 0,
 			tentativaFase1 = 1,
-			tentativaDesafio12 = 1;
+			tentativaDesafio12 = 1,
+			tentativaDesafio22 = 1;
 		char sexoPersonagem;
 		String nomePersonagem = "",
 			   condicaoInicioJogo = "",
@@ -1074,7 +1155,8 @@ public class jogoCompleto {
 			   desafio1Fase2 = "",
 			   fimfase = "",
 			   recomeco = "",
-			   recomecoD12 = "";
+			   recomecoD12 = "",
+			   desafio2Fase2 = "";
 		String informacoesPersonagem[] = new String[3];
 		String statusDesafiosFase1[] = new String[5];
 		String statusRefeito[] = new String[5];
@@ -1149,9 +1231,11 @@ public class jogoCompleto {
 		
 		//começa a fase 2
 		do {
+			//testa se já foi realizado mais de uma vez o desafio
 			if(tentativaDesafio12 > 1) {
-				System.out.println("Você não acetou o desafio 1 da fase 2!");
+				System.out.println("Você não acertou o desafio 1 da fase 2!");
 				System.out.println("O jogo vai ser reiniciado na fase 2!");
+				//confere se o usuário quer recomeçar
 				System.out.println("\nDESEJA RECOMEÇAR? (S/N)");
 				recomecoD12 = sc.next().toLowerCase();
 				if(recomecoD12.contains("s")) {
@@ -1174,6 +1258,34 @@ public class jogoCompleto {
 			}
 			tentativaDesafio12++;
 		} while(desafio1Fase2 != "correta");
-		System.out.println("Saiu");
+		
+		do {
+			//confere a quantidade de vezes que já foi jogado o desafio
+			if(tentativaDesafio22 > 1) {
+				System.out.println("Você não acertou o desafio 2 da fase 2!");
+				System.out.println("O jogo vai ser reiniciado no desafio 2 da fase 2!");
+				//ver se a pessoa quer refazer a fase 
+				System.out.println("\nDESEJA RECOMEÇAR? (S/N)");
+				recomecoD12 = sc.next().toLowerCase();
+				if(recomecoD12.contains("s")) {
+					System.out.println("\nREINICIANDO FASE...");
+				} else {
+					System.exit(0);
+				}
+			}
+			historiaDesafio2Fase2(sexoPersonagem, nomePersonagem);
+			desafio2Fase2 = desafio2Fase2(nomePersonagem);
+			if(desafio2Fase2 != "correta") {
+				System.out.println("\n");
+				System.out.println("\t\t\t\t ██████╗  █████╗ ███╗   ███╗███████╗     ██████╗ ██╗   ██╗███████╗██████╗ \n" + 
+								   "\t\t\t\t██╔════╝ ██╔══██╗████╗ ████║██╔════╝    ██╔═══██╗██║   ██║██╔════╝██╔══██╗\n" + 
+								   "\t\t\t\t██║  ███╗███████║██╔████╔██║█████╗      ██║   ██║██║   ██║█████╗  ██████╔╝\n" + 
+								   "\t\t\t\t██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗\n" + 
+								   "\t\t\t\t╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║\n" + 
+								   "\t\t\t\t ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝");
+			}
+			tentativaDesafio22++;
+		} while(desafio2Fase2 != "correta");
+		System.out.println("\n\t\t\t\t\t\t\t\tFASE III");
 	}
 }
