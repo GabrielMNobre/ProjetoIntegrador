@@ -923,7 +923,7 @@ public class jogoCompleto {
 				System.out.print(historia[i]+" ");
 			}
 			try {
-				Thread.sleep(100);
+				Thread.sleep(500);
 			} catch(InterruptedException e) {
 				System.out.println(e);
 			}
@@ -943,7 +943,7 @@ public class jogoCompleto {
 		//utiliza o nome e o artigo para escrever a história
 		String historia[] = 
 			{
-				"Chegou o dia em que", "o grupo de hackers", "ia realizar entrada nos servidores", "do Facebook, para o roubo", "das informações.",
+				"Chegou o dia em que", "o grupo de hackers", "iam realizar entrada nos servidores", "do Facebook, para o roubo", "das informações.",
 				nome, "estava acompanhando", "as movimentações", "do servidor do Facebook pois,", "ele havia sido contratado", "para realizar este monitoramento.",
 				"O grupo iniciou o ataque", "a estratégia do grupo era simples", "entrar no servidor", "pegar as senhas que estavam", "criptografadas",
 				"e roubar as informações.", "Porém eles não", "contavam que a polícia", "havia se reforçado", "e estava preparada.", nome, "sabia",
@@ -961,7 +961,7 @@ public class jogoCompleto {
 				System.out.print(historia[i]+" ");
 			}
 			try {
-				Thread.sleep(100);
+				Thread.sleep(500);
 			} catch(InterruptedException e) {
 				System.out.println(e);
 			}
@@ -1082,7 +1082,7 @@ public class jogoCompleto {
 				System.out.print(historia[i]+" ");
 			}
 			try {
-				Thread.sleep(100);
+				Thread.sleep(500);
 			} catch(InterruptedException e) {
 				System.out.println(e);
 			}
@@ -1135,13 +1135,181 @@ public class jogoCompleto {
 		 return status;
 	}
 	
+	static void historiaInicialFase3(String nome) {
+		//historia do desafio 4
+		System.out.println("\n");
+		//utiliza o nome e o artigo para escrever a história
+		String historia[] = 
+			{
+				"As mudanças que", nome, "fez surtiram efeito e", "o grupo de hackers não conseguiu", "roubar as informações dos usuários do Facebook.",
+				"Isso irritou muito", "o grupo", "pois, eles queriam", "muito o dinheiro que a venda das informações trariam.", "Com toda esta irritação causada",
+				"o grupo arquitetou outro ataque,", "porém desta vez", nome, "não conseguiu se preparar previamente."
+			};
+		//exibição com delay de 5 segundos
+		for (int i = 0; i <= historia.length-1; i++) {
+			if(historia[i].contains(".") || historia[i].contains(":") || historia[i].contains("?")) {
+				System.out.print(historia[i]+"\n");
+			} else {
+				System.out.print(historia[i]+" ");
+			}
+			try {
+				Thread.sleep(500);
+			} catch(InterruptedException e) {
+				System.out.println(e);
+			}
+		}
+	}
+	
+	static void historiaDesafioFase3(char sexo, String nome) {
+		//historia do desafio 4
+		String artigo = "";
+		//define o a partir do sexo do personagem o artigo da frase
+		if(sexo == 'M') {
+			artigo = "ele";
+		} else {
+			artigo = "ela";
+		}
+		System.out.println("\n");
+		//utiliza o nome e o artigo para escrever a história
+		String historia[] = 
+			{
+				"O ataque foi muito bem orquestrado pelo grupo", "e uma parte importante do plano", "era pegar", nome, "despreparado.",
+				"O ataque consistia em", "entrar em confronto", "com", nome, "no acesso ao servidor", "pois, se vencessem", nome, "logo na entrada",
+				"não teriam que enfrentar", artigo, "no resto da ação.", "Chegou o dia que o grupo de hackers", "havia se programado", "para",
+				"atacar.", "Se", nome, "for derrotado perderá tudo e o grupo de hackers", "dominará as informações e", "a venda deles será concretizada.",
+				"É tudo ou nada para", nome
+			};
+		//exibição com delay de 5 segundos
+		for (int i = 0; i <= historia.length-1; i++) {
+			if(historia[i].contains(".") || historia[i].contains(":") || historia[i].contains("?")) {
+				System.out.print(historia[i]+"\n");
+			} else {
+				System.out.print(historia[i]+" ");
+			}
+			try {
+				Thread.sleep(500);
+			} catch(InterruptedException e) {
+				System.out.println(e);
+			}
+		}
+	}
+	
+	static String desafioFase3(String nome) {
+		Random sort = new Random();
+		String status = "";
+		int user = 0, //p1
+			acessoServidor = 0, // r
+			grupoHacker = 0,
+			x = 0; // cp
+		
+		//cria explicação da corrida ao 20
+		System.out.println("\n");
+		System.out.println("Para conseguir o controle do servidor o grupo vai enfrentar um desafio contra "+nome);
+		System.out.println("O desafio consiste em uma escolha simples:");
+		System.out.println("Escolha entre 1 ou 2.");
+		System.out.println("Se "+nome+" chegar ao 20 primeiro ele vence e impede o ataque");
+		System.out.println("Se o grupo chegar primeiro ao 20, "+nome+" perde tudo e o grupo consegue todas as informações.");
+		System.out.println("\n");
+		System.out.println("O embate começa agora!");
+		System.out.println("Escolha entre 1 ou 2. Quem chegar ao 20 primeiro ganha!");
+		do {
+			x = 0;
+			//define que a jogada do hacker só pode ser 1 ou 2
+			grupoHacker = sort.nextInt(2)+1;
+			
+			//confere se o personagem entrou com 1 ou 2, qualquer coisa diferente disso é inválida
+			while(x != 1) {
+				System.out.println("\n");
+				System.out.print("Entre com 1 ou 2: ");
+				user = sc.nextInt();
+				if(user == 1 || user == 2) {
+					x = 1;
+				} else {
+					System.out.println("Valor inserido não existe!");
+				}
+			}
+			
+			//observa qual número foi escolhido pelo personagem
+			switch(user) {
+				case 1 :
+					//incrementa ao total que no fim tem que ser 20
+					acessoServidor += user;
+					System.out.println("\n");
+					System.out.println("JOGADA DO "+nome+" => "+user);
+					System.out.println(" ________________________________________________ ");
+					System.out.println("|                                                |");
+					System.out.println("| A SOMA PARA ACESSAR O SERVIDO ESTÁ EM => "+acessoServidor+"     |");
+					System.out.println("|________________________________________________|");
+					//confere se já chegou no 20
+					if(acessoServidor >= 20) {
+						System.out.println("\n");
+						System.out.println(nome+" VENCEU!");
+						System.out.println("O ataque foi parado. Tudo se resolveu.");
+						status = "venceu";
+						break;
+					}
+					System.out.println("\n");
+					System.out.println("JOGADA DO GRUPO DE HACKERS => "+grupoHacker);
+					acessoServidor += grupoHacker;
+					System.out.println(" ________________________________________________ ");
+					System.out.println("|                                                |");
+					System.out.println("| A SOMA PARA ACESSAR O SERVIDO ESTÁ EM => "+acessoServidor+"     |");
+					System.out.println("|________________________________________________|");
+					
+					if(acessoServidor >= 20) {
+						System.out.println("\n");
+						System.out.println("O GRUPO DE HACKERS VENCEU!");
+						System.out.println("O grupo conquistou seu objetivo, entrou nos servidores pegou as informações e as vendeu no Mercado Negro.");
+						status = "perdeu";
+						break;
+					}
+					break;
+				case 2:
+					acessoServidor += user;
+					System.out.println("\n");
+					System.out.println("JOGADA DO "+nome+" => "+user);
+					System.out.println(" ________________________________________________ ");
+					System.out.println("|                                                |");
+					System.out.println("| A SOMA PARA ACESSAR O SERVIDO ESTÁ EM => "+acessoServidor+"     |");
+					System.out.println("|________________________________________________|");
+					if(acessoServidor >= 20) {
+						System.out.println("\n");
+						System.out.println(nome+" VENCEU!");
+						System.out.println("O ataque foi parado. Tudo se resolveu.");
+						status = "venceu";
+						break;
+					}
+					System.out.println("\n");
+					System.out.println("JOGADA DO GRUPO DE HACKERS => "+grupoHacker);
+					acessoServidor += grupoHacker;
+					System.out.println(" ________________________________________________ ");
+					System.out.println("|                                                |");
+					System.out.println("| A SOMA PARA ACESSAR O SERVIDO ESTÁ EM => "+acessoServidor+"     |");
+					System.out.println("|________________________________________________|");
+					
+					if(acessoServidor >= 20) {
+						System.out.println("\n");
+						System.out.println("O GRUPO DE HACKERS VENCEU!");
+						status = "perdeu";
+						break;
+					}
+					break;
+			}
+			
+			//só para de ser exibidoo quando o o acesso ao servidor for igual a 20
+		} while(acessoServidor < 20);
+		return status;
+	}
+	
+	
 	public static void main(String[] args) {
 		//utilizamos a main como um maestro, apenas chamando as funções
 		int idadePersonagem = 0,
 			correta = 0,
 			tentativaFase1 = 1,
 			tentativaDesafio12 = 1,
-			tentativaDesafio22 = 1;
+			tentativaDesafio22 = 1,
+			tentativaJogo = 1;
 		char sexoPersonagem;
 		String nomePersonagem = "",
 			   condicaoInicioJogo = "",
@@ -1156,7 +1324,8 @@ public class jogoCompleto {
 			   fimfase = "",
 			   recomeco = "",
 			   recomecoD12 = "",
-			   desafio2Fase2 = "";
+			   desafio2Fase2 = "",
+			   desafioFase3 = "";
 		String informacoesPersonagem[] = new String[3];
 		String statusDesafiosFase1[] = new String[5];
 		String statusRefeito[] = new String[5];
@@ -1172,8 +1341,8 @@ public class jogoCompleto {
 		visualPersonagem = selecionaBoneco(sexoPersonagem);
 		System.out.println("\n"+nomePersonagem +" seu personagem para participar do jogo será: \n\n"+visualPersonagem);
 		carregarInicio(condicaoInicioJogo);
+			
 		//começa a fase 1
-		
 		do {
 			if(tentativaFase1 > 1) {
 				System.out.println("\n\nDESEJA RECOMEÇAR O JOGO? (S/N)");
@@ -1227,27 +1396,89 @@ public class jogoCompleto {
 			}
 			tentativaFase1++;
 		} while(fimfase != "ok");
-		//termina a fase 1
-		
-		//começa a fase 2
+			//termina a fase 1
+		//laço de recomeço caso o usuário não ganhe o desafio final
 		do {
-			//testa se já foi realizado mais de uma vez o desafio
-			if(tentativaDesafio12 > 1) {
-				System.out.println("Você não acertou o desafio 1 da fase 2!");
-				System.out.println("O jogo vai ser reiniciado na fase 2!");
-				//confere se o usuário quer recomeçar
-				System.out.println("\nDESEJA RECOMEÇAR? (S/N)");
-				recomecoD12 = sc.next().toLowerCase();
-				if(recomecoD12.contains("s")) {
-					System.out.println("\nREINICIANDO FASE...");
-				} else {
-					System.exit(0);
-				}
+			if(tentativaJogo > 1) {
+				tentativaDesafio12 = 1;
 			}
-			historiaInicialFase2(sexoPersonagem, nomePersonagem);
-			historiaDesafio1Fase2(sexoPersonagem, nomePersonagem);
-			desafio1Fase2 = desafio1Fase2();
-			if(desafio1Fase2 != "correta") {
+			//começa a fase 2
+			do {
+				//testa se já foi realizado mais de uma vez o desafio
+				if(tentativaDesafio12 > 1) {
+					System.out.println("Você não acertou o desafio 1 da fase 2!");
+					System.out.println("O jogo vai ser reiniciado na fase 2!");
+					//confere se o usuário quer recomeçar
+					System.out.println("\nDESEJA RECOMEÇAR? (S/N)");
+					recomecoD12 = sc.next().toLowerCase();
+					if(recomecoD12.contains("s")) {
+						System.out.println("\nREINICIANDO FASE...");
+					} else {
+						System.exit(0);
+					}
+				}
+				//executa o primeiro desafio da segunda fase
+				historiaInicialFase2(sexoPersonagem, nomePersonagem);
+				historiaDesafio1Fase2(sexoPersonagem, nomePersonagem);
+				desafio1Fase2 = desafio1Fase2();
+				if(desafio1Fase2 != "correta") {
+					System.out.println("\n");
+					System.out.println("\t\t\t\t ██████╗  █████╗ ███╗   ███╗███████╗     ██████╗ ██╗   ██╗███████╗██████╗ \n" + 
+									   "\t\t\t\t██╔════╝ ██╔══██╗████╗ ████║██╔════╝    ██╔═══██╗██║   ██║██╔════╝██╔══██╗\n" + 
+									   "\t\t\t\t██║  ███╗███████║██╔████╔██║█████╗      ██║   ██║██║   ██║█████╗  ██████╔╝\n" + 
+									   "\t\t\t\t██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗\n" + 
+									   "\t\t\t\t╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║\n" + 
+									   "\t\t\t\t ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝");
+				}
+				tentativaDesafio12++;
+			} while(desafio1Fase2 != "correta");
+			
+			do {
+				//confere a quantidade de vezes que já foi jogado o desafio
+				if(tentativaDesafio22 > 1) {
+					System.out.println("Você não acertou o desafio 2 da fase 2!");
+					System.out.println("O jogo vai ser reiniciado no desafio 2 da fase 2!");
+					//ver se a pessoa quer refazer a fase 
+					System.out.println("\nDESEJA RECOMEÇAR? (S/N)");
+					recomecoD12 = sc.next().toLowerCase();
+					if(recomecoD12.contains("s")) {
+						System.out.println("\nREINICIANDO FASE...");
+					} else {
+						System.exit(0);
+					}
+				}
+				//executa o segundo desafio da segunda fase
+				historiaDesafio2Fase2(sexoPersonagem, nomePersonagem);
+				desafio2Fase2 = desafio2Fase2(nomePersonagem);
+				if(desafio2Fase2 != "correta") {
+					System.out.println("\n");
+					System.out.println("\t\t\t\t ██████╗  █████╗ ███╗   ███╗███████╗     ██████╗ ██╗   ██╗███████╗██████╗ \n" + 
+									   "\t\t\t\t██╔════╝ ██╔══██╗████╗ ████║██╔════╝    ██╔═══██╗██║   ██║██╔════╝██╔══██╗\n" + 
+									   "\t\t\t\t██║  ███╗███████║██╔████╔██║█████╗      ██║   ██║██║   ██║█████╗  ██████╔╝\n" + 
+									   "\t\t\t\t██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗\n" + 
+									   "\t\t\t\t╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║\n" + 
+									   "\t\t\t\t ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝");
+				}
+				tentativaDesafio22++;
+			} while(desafio2Fase2 != "correta");
+			tentativaDesafio22 = 1;
+			//termina a fase 2
+			//começa a fase 3
+			System.out.println("\n\t\t\t\t\t\t\tFASE III");
+			historiaInicialFase3(nomePersonagem);
+			historiaDesafioFase3(sexoPersonagem, nomePersonagem);
+			desafioFase3 = desafioFase3(nomePersonagem);
+			
+			if(desafioFase3 == "venceu") {
+				System.out.println("\n");
+				System.out.println("\t\t\t\t██╗    ██╗██╗███╗   ██╗     ██████╗  █████╗ ███╗   ███╗███████╗\n" + 
+								    "\t\t\t\t██║    ██║██║████╗  ██║    ██╔════╝ ██╔══██╗████╗ ████║██╔════╝\n" + 
+								    "\t\t\t\t██║ █╗ ██║██║██╔██╗ ██║    ██║  ███╗███████║██╔████╔██║█████╗  \n" + 
+								    "\t\t\t\t██║███╗██║██║██║╚██╗██║    ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝  \n" + 
+								    "\t\t\t\t╚███╔███╔╝██║██║ ╚████║    ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗\n" + 
+								    "\t\t\t\t ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝     ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝");
+				System.exit(0);
+			} else {
 				System.out.println("\n");
 				System.out.println("\t\t\t\t ██████╗  █████╗ ███╗   ███╗███████╗     ██████╗ ██╗   ██╗███████╗██████╗ \n" + 
 								   "\t\t\t\t██╔════╝ ██╔══██╗████╗ ████║██╔════╝    ██╔═══██╗██║   ██║██╔════╝██╔══██╗\n" + 
@@ -1255,37 +1486,15 @@ public class jogoCompleto {
 								   "\t\t\t\t██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗\n" + 
 								   "\t\t\t\t╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║\n" + 
 								   "\t\t\t\t ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝");
+				System.out.println("Você não conseguiu vencer o desafio final.");
+				System.out.println("Parece que você precis de mais uma chance para vencer o grupo de hackers.");
+				System.out.println("O jogo será reiniciado da segunda fase.");
+				System.out.println("Mostre seu valor e vença os desafios!");
+				System.out.println("O jogo reinicia agora...");
 			}
-			tentativaDesafio12++;
-		} while(desafio1Fase2 != "correta");
-		
-		do {
-			//confere a quantidade de vezes que já foi jogado o desafio
-			if(tentativaDesafio22 > 1) {
-				System.out.println("Você não acertou o desafio 2 da fase 2!");
-				System.out.println("O jogo vai ser reiniciado no desafio 2 da fase 2!");
-				//ver se a pessoa quer refazer a fase 
-				System.out.println("\nDESEJA RECOMEÇAR? (S/N)");
-				recomecoD12 = sc.next().toLowerCase();
-				if(recomecoD12.contains("s")) {
-					System.out.println("\nREINICIANDO FASE...");
-				} else {
-					System.exit(0);
-				}
-			}
-			historiaDesafio2Fase2(sexoPersonagem, nomePersonagem);
-			desafio2Fase2 = desafio2Fase2(nomePersonagem);
-			if(desafio2Fase2 != "correta") {
-				System.out.println("\n");
-				System.out.println("\t\t\t\t ██████╗  █████╗ ███╗   ███╗███████╗     ██████╗ ██╗   ██╗███████╗██████╗ \n" + 
-								   "\t\t\t\t██╔════╝ ██╔══██╗████╗ ████║██╔════╝    ██╔═══██╗██║   ██║██╔════╝██╔══██╗\n" + 
-								   "\t\t\t\t██║  ███╗███████║██╔████╔██║█████╗      ██║   ██║██║   ██║█████╗  ██████╔╝\n" + 
-								   "\t\t\t\t██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗\n" + 
-								   "\t\t\t\t╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║\n" + 
-								   "\t\t\t\t ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝");
-			}
-			tentativaDesafio22++;
-		} while(desafio2Fase2 != "correta");
-		System.out.println("\n\t\t\t\t\t\t\t\tFASE III");
+			//laço só deixa de ser exibido se o usuário ganhar o desafio final
+		}while(desafioFase3 != "venceu");
+		//quando o usuário acerta o desafio final, termina a execução do jogo
+		System.exit(0);
 	}
 }
